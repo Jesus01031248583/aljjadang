@@ -22,7 +22,7 @@ npm run preview  # 빌드 후 http://localhost:3000 에서 미리보기
 
 ## 새 글 쓰기
 
-`content/posts/영문-주소.md` 파일을 만들고 맨 위에 아래 내용을 넣습니다. 파일 이름이 글 주소가 됩니다.
+`content/posts/영문-주소.md` 파일을 만들고 맨 위에 아래 내용을 넣습니다. 파일 이름이 글 주소가 됩니다. 안내 문구가 들어 있는 `templates/new-post.md`를 복사해서 시작해도 됩니다.
 
 ```markdown
 ---
