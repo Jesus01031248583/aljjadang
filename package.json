@@ -1,0 +1,13 @@
+{
+  "name": "aljjadang-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.mjs",
+    "preview": "node src/build.mjs && npx --yes serve dist"
+  },
+  "dependencies": {
+    "marked": "^12.0.2"
+  }
+}
