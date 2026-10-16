@@ -173,7 +173,8 @@ function withToc(html) {
   const toc = [];
   const out = html.replace(/<h2>([\s\S]*?)<\/h2>/g, (_, inner) => {
     const id = `sec-${toc.length + 1}`;
-    toc.push({ id, text: inner.replace(/<[^>]+>/g, "") });
+    // inner is already HTML-escaped by marked; keep it as HTML, only drop tags
+    toc.push({ id, html: inner.replace(/<[^>]+>/g, "") });
     return `<h2 id="${id}">${inner}</h2>`;
   });
   return { html: out, toc };
@@ -197,7 +198,7 @@ for (const [i, p] of posts.entries()) {
     </div>
   </header>
   <div class="wrap narrow">
-    ${toc.length >= 3 ? `<nav class="toc" aria-label="목차"><p class="toc-title">이 글의 순서</p><ol>${toc.map((t) => `<li><a href="#${t.id}">${esc(t.text)}</a></li>`).join("")}</ol></nav>` : ""}
+    ${toc.length >= 3 ? `<nav class="toc" aria-label="목차"><p class="toc-title">이 글의 순서</p><ol>${toc.map((t) => `<li><a href="#${t.id}">${t.html}</a></li>`).join("")}</ol></nav>` : ""}
     <div class="content">${html}</div>
     <div class="byline">
       ${LOGO_MARK}
