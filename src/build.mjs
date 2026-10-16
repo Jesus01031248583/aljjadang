@@ -19,6 +19,7 @@ const ICONS = {
   box: '<rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9"/><path d="M10 13h4"/>',
   home: '<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v11h14V9"/><path d="M9.5 20v-6h5v6"/>',
   glass: '<path d="M8 3h8l-.4 6a3.6 3.6 0 0 1-7.2 0z"/><path d="M12 12.6V21"/><path d="M8.5 21h7"/>',
+  won: '<circle cx="12" cy="12" r="9"/><path d="M7.5 8l2 8 2.5-6 2.5 6 2-8"/><path d="M6.5 11.5h11"/>',
   doc: '<path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/>',
 };
 const CATEGORY_STYLE = {
@@ -27,6 +28,7 @@ const CATEGORY_STYLE = {
   "정리·수납": { color: "#d97706", icon: "box" },
   "생활 준비": { color: "#7c3aed", icon: "home" },
   "음식·문화": { color: "#e11d48", icon: "glass" },
+  "세금·금융": { color: "#4338ca", icon: "won" },
 };
 const catStyle = (c) => CATEGORY_STYLE[c] || { color: "#475569", icon: "doc" };
 const icon = (name, cls = "ico") =>
