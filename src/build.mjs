@@ -175,8 +175,9 @@ function withToc(html) {
   const toc = [];
   const out = html.replace(/<h2>([\s\S]*?)<\/h2>/g, (_, inner) => {
     const id = `sec-${toc.length + 1}`;
-    // inner is already HTML-escaped by marked; keep it as HTML, only drop tags
-    toc.push({ id, html: inner.replace(/<[^>]+>/g, "") });
+    // inner is already HTML-escaped by marked; keep it as HTML, only drop tags.
+    // 목차 <ol>이 번호를 자동으로 붙이므로 제목 앞의 "1. " 같은 번호는 뗀다.
+    toc.push({ id, html: inner.replace(/<[^>]+>/g, "").replace(/^\s*\d+\.\s*/, "") });
     return `<h2 id="${id}">${inner}</h2>`;
   });
   return { html: out, toc };
