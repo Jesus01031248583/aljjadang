@@ -173,6 +173,8 @@ const pages = readDir("content/pages");
 const categories = [...new Set(posts.map((p) => p.category))];
 // "18~20" 같은 범위 표기가 취소선으로 바뀌지 않도록 물결표를 이스케이프한다.
 const fill = (s) => s.replace(/~/g, "\\~").replaceAll("{{email}}", config.email).replaceAll("{{title}}", config.title).replaceAll("{{author}}", config.author);
+// '보험다모아'**에서 처럼 따옴표·괄호 뒤에 조사가 붙으면 marked가 굵게 처리하지 못해 **가 그대로 남는다.
+const md = (s) => marked.parse(fill(s)).replace(/\*\*([^*<>\n]+?)\*\*/g, "<strong>$1</strong>");
 
 // 본문 h2에 id를 달고 목차 항목을 모은다.
 function withToc(html) {
@@ -193,7 +195,7 @@ for (const [i, p] of posts.entries()) {
   const next = posts[i - 1];
   const sameCat = posts.filter((o) => o !== p && o.category === p.category);
   const related = [...sameCat, ...posts.filter((o) => o !== p && o.category !== p.category)].slice(0, 3);
-  const { html, toc } = withToc(marked.parse(fill(p.body)));
+  const { html, toc } = withToc(md(p.body));
   const body = `
 <article class="post">
   <header class="post-head">
@@ -243,7 +245,7 @@ for (const p of pages) {
     title: p.title,
     description: p.description,
     pathName: `/${p.slug}/`,
-    body: `<article class="post page"><header class="post-head"><div class="wrap narrow"><h1>${esc(p.title)}</h1></div></header><div class="wrap narrow"><div class="content">${marked.parse(fill(p.body))}</div></div></article>`,
+    body: `<article class="post page"><header class="post-head"><div class="wrap narrow"><h1>${esc(p.title)}</h1></div></header><div class="wrap narrow"><div class="content">${md(p.body)}</div></div></article>`,
   }));
 }
 
