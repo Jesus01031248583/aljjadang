@@ -201,7 +201,7 @@ for (const [i, p] of posts.entries()) {
     <div class="content">${html}</div>
     <div class="byline">
       ${LOGO_MARK}
-      <div><strong>${esc(config.author)}</strong><span>직접 확인한 생활 정보 중 알짜만 골라 전합니다.</span></div>
+      <div><strong>${esc(config.author)}</strong><span>꼼꼼히 확인한 생활 정보 중 알짜만 골라 전합니다.</span></div>
     </div>
     <nav class="pager" aria-label="이전·다음 글">
       ${prev ? `<a href="/posts/${prev.slug}/"><span>이전 글</span>${esc(prev.title)}</a>` : "<span></span>"}
