@@ -109,7 +109,7 @@ function layout({ title, description, pathName, body, type = "website", jsonLd }
 <meta property="og:description" content="${esc(description || config.description)}">
 <meta property="og:url" content="${esc(canonical)}">
 <meta property="og:site_name" content="${esc(config.title)}">
-<meta property="og:image" content="${siteUrl}/og-image.png">
+<meta property="og:image" content="${siteUrl}/og-image.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
