@@ -109,6 +109,10 @@ function layout({ title, description, pathName, body, type = "website", jsonLd }
 <meta property="og:description" content="${esc(description || config.description)}">
 <meta property="og:url" content="${esc(canonical)}">
 <meta property="og:site_name" content="${esc(config.title)}">
+<meta property="og:image" content="${siteUrl}/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0e9f6e">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -160,7 +164,7 @@ function write(rel, content) {
 // 폴더 자체는 두고 내용만 비운다 (미리보기 서버·OneDrive가 폴더를 잡고 있어도 동작하도록).
 fs.mkdirSync(dist, { recursive: true });
 for (const f of fs.readdirSync(dist)) fs.rmSync(path.join(dist, f), { recursive: true, force: true });
-for (const f of ["style.css", "favicon.svg"]) fs.copyFileSync(path.join(root, "src", f), path.join(dist, f));
+for (const f of ["style.css", "favicon.svg", "og-image.png"]) fs.copyFileSync(path.join(root, "src", f), path.join(dist, f));
 
 const posts = readDir("content/posts")
   .filter((p) => p.draft !== "true")
