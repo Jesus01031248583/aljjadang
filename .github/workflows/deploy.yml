@@ -7,7 +7,8 @@ on:
   # 예약 발행: 10분마다 공개 시각(publishAt)이 지난 글이 있는지 확인한다.
   # GitHub 사정에 따라 실행이 몇 분~수십 분 늦어질 수 있다.
   schedule:
-    - cron: "*/10 * * * *"
+    # 정각(00분)은 GitHub가 붐벼 건너뛰는 일이 많아 3분, 13분… 처럼 비껴 둔다.
+    - cron: "3,13,23,33,43,53 * * * *"
 
 permissions:
   contents: read
