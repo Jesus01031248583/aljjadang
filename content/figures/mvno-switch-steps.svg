@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="600" viewBox="0 0 640 600" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="598" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">알뜰폰 번호이동 5단계</text>
+
+  <line x1="58" y1="100" x2="58" y2="436" stroke="#c9f0dd" stroke-width="4"/>
+
+  <g font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">
+    <circle cx="58" cy="100" r="22" fill="#0e9f6e"/><text x="58" y="107">1</text>
+    <circle cx="58" cy="184" r="22" fill="#0e9f6e"/><text x="58" y="191">2</text>
+    <circle cx="58" cy="268" r="22" fill="#0e9f6e"/><text x="58" y="275">3</text>
+    <circle cx="58" cy="352" r="22" fill="#0e9f6e"/><text x="58" y="359">4</text>
+    <circle cx="58" cy="436" r="22" fill="#0e9f6e"/><text x="58" y="443">5</text>
+  </g>
+
+  <g>
+    <text x="100" y="98" font-size="21" font-weight="700" fill="#191f28">요금제 비교</text>
+    <text x="100" y="126" font-size="17" font-weight="500" fill="#4e5968">알뜰폰허브·스마트초이스에서 후보 2~3개 고르기</text>
+    <text x="100" y="182" font-size="21" font-weight="700" fill="#191f28">유심 또는 eSIM 준비</text>
+    <text x="100" y="210" font-size="17" font-weight="500" fill="#4e5968">가입할 사업자와 망에 맞는지 확인</text>
+    <text x="100" y="266" font-size="21" font-weight="700" fill="#191f28">셀프개통 신청</text>
+    <text x="100" y="294" font-size="17" font-weight="500" fill="#4e5968">'번호이동' 선택 → 본인 확인 → 사전 동의</text>
+    <text x="100" y="350" font-size="21" font-weight="700" fill="#191f28">개통 확인</text>
+    <text x="100" y="378" font-size="17" font-weight="500" fill="#4e5968">재부팅 후 전화·문자·데이터 모두 되는지 확인</text>
+    <text x="100" y="434" font-size="21" font-weight="700" fill="#191f28">개통 후 정리</text>
+    <text x="100" y="462" font-size="17" font-weight="500" fill="#4e5968">멤버십 포인트 쓰기, 통신사 결제 구독 바꾸기</text>
+  </g>
+
+  <rect x="32" y="496" width="576" height="76" rx="14" fill="#fff1f2"/>
+  <text x="56" y="528" font-size="18" font-weight="700" fill="#be123c">기존 통신사를 먼저 해지하지 마세요</text>
+  <text x="56" y="555" font-size="16" font-weight="500" fill="#4e5968">번호가 사라집니다. 번호이동이 끝나면 기존 통신사는 자동 해지돼요.</text>
+</svg>

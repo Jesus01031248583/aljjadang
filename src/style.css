@@ -174,6 +174,9 @@ img, svg { display: block; }
 .content td strong { background: none; }
 .content hr { border: 0; height: 1px; margin: 2.4em 0; background: var(--line); }
 .content code { padding: 2px 6px; border-radius: 6px; background: var(--bg); font-size: .9em; }
+.content .fig { margin: 2em 0; }
+.content .fig img { display: block; width: 100%; height: auto; }
+.content .fig figcaption { margin-top: 10px; color: var(--sub); font-size: 14.5px; line-height: 1.6; text-align: center; }
 
 .byline { display: flex; align-items: center; gap: 14px; margin: 48px 0 24px; padding: 20px 22px; border-radius: 16px; background: var(--surface); box-shadow: var(--shadow); }
 .byline .logo-mark { width: 42px; height: 42px; flex: none; }

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="440" viewBox="0 0 640 440" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="438" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">깡통전세 위험 비율 계산</text>
+
+  <!-- 계산식 -->
+  <rect x="32" y="76" width="576" height="104" rx="14" fill="#f5f3ff"/>
+  <text x="320" y="116" font-size="19" font-weight="700" fill="#191f28" text-anchor="middle">근저당 채권최고액 + 내 보증금 + 선순위 보증금</text>
+  <line x1="92" y1="132" x2="548" y2="132" stroke="#7c3aed" stroke-width="2"/>
+  <text x="320" y="162" font-size="19" font-weight="700" fill="#191f28" text-anchor="middle">집 시세</text>
+
+  <!-- 구간 막대 (0~100%) -->
+  <text x="32" y="226" font-size="18" font-weight="700" fill="#191f28">결과가 이 비율이라면</text>
+  <rect x="32" y="244" width="402" height="40" rx="6" fill="#d1fae5"/>
+  <rect x="436" y="244" width="56" height="40" fill="#fef3c7"/>
+  <rect x="494" y="244" width="114" height="40" rx="6" fill="#ffe4e6"/>
+  <text x="32" y="308" font-size="16" font-weight="500" fill="#8b95a1">0%</text>
+  <text x="435" y="308" font-size="16" font-weight="700" fill="#4e5968" text-anchor="middle">70%</text>
+  <text x="493" y="308" font-size="16" font-weight="700" fill="#4e5968" text-anchor="middle">80%</text>
+  <text x="233" y="270" font-size="17" font-weight="700" fill="#065f46" text-anchor="middle">여유 있는 편</text>
+  <text x="464" y="270" font-size="17" font-weight="700" fill="#92400e" text-anchor="middle">주의</text>
+  <text x="551" y="270" font-size="17" font-weight="700" fill="#be123c" text-anchor="middle">위험 신호</text>
+
+  <!-- 예시 -->
+  <path d="M533 244v-12" stroke="#191f28" stroke-width="2"/>
+  <circle cx="533" cy="228" r="5" fill="#191f28"/>
+  <text x="32" y="352" font-size="17" font-weight="700" fill="#191f28">예시</text>
+  <text x="80" y="352" font-size="17" font-weight="500" fill="#4e5968">시세 3억 원, 채권최고액 6천만 원, 내 보증금 2억 원이면</text>
+  <text x="80" y="380" font-size="17" font-weight="500" fill="#4e5968">2억 6천만 원 ÷ 3억 원 = 약 87% → 위험 신호</text>
+  <text x="32" y="418" font-size="15" font-weight="500" fill="#8b95a1">선순위 보증금은 나보다 먼저 들어온 세입자의 보증금입니다</text>
+</svg>

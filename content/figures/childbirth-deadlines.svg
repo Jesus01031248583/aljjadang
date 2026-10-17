@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="490" viewBox="0 0 640 490" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="488" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">출산 전후 신청 기한 한눈에 보기</text>
+  <text x="32" y="82" font-size="17" font-weight="500" fill="#8b95a1">출생일을 기준으로 본 신청 기간</text>
+
+  <!-- 눈금: x = 232 + 4.8 × 일수 (−40일 ~ +75일) -->
+  <g stroke="#e5e8eb" stroke-width="2" stroke-dasharray="4 5">
+    <line x1="40" y1="146" x2="40" y2="414"/>
+    <line x1="376" y1="146" x2="376" y2="414"/>
+    <line x1="520" y1="146" x2="520" y2="414"/>
+  </g>
+  <line x1="232" y1="146" x2="232" y2="414" stroke="#7c3aed" stroke-width="2"/>
+
+  <text x="40" y="138" font-size="18" font-weight="700" fill="#191f28">산모·신생아 건강관리(산후도우미) 신청</text>
+  <rect x="40" y="150" width="480" height="28" rx="6" fill="#ddd6fe"/>
+
+  <text x="232" y="214" font-size="18" font-weight="700" fill="#191f28">출생신고</text>
+  <rect x="232" y="226" width="144" height="28" rx="6" fill="#a78bfa"/>
+
+  <text x="232" y="290" font-size="18" font-weight="700" fill="#191f28">부모급여·아동수당 (소급받으려면)</text>
+  <rect x="232" y="302" width="288" height="28" rx="6" fill="#7c3aed"/>
+
+  <text x="232" y="366" font-size="18" font-weight="700" fill="#191f28">첫만남이용권 사용 (출생일부터 2년)</text>
+  <rect x="232" y="378" width="360" height="28" rx="6" fill="#c4b5fd"/>
+  <path d="M592 384l14 8-14 8z" fill="#c4b5fd"/>
+
+  <text x="40" y="448" font-size="15" font-weight="700" fill="#4e5968" text-anchor="middle">
+    <tspan x="58">예정일</tspan><tspan x="58" dy="18">40일 전</tspan>
+  </text>
+  <text x="232" y="448" font-size="15" font-weight="700" fill="#7c3aed" text-anchor="middle">출생</text>
+  <text x="376" y="448" font-size="15" font-weight="700" fill="#4e5968" text-anchor="middle">1개월</text>
+  <text x="520" y="448" font-size="15" font-weight="700" fill="#4e5968" text-anchor="middle">60일</text>
+</svg>

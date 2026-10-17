@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="600" viewBox="0 0 640 600" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="598" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">냉장실 칸별 보관 위치</text>
+  <text x="32" y="82" font-size="17" font-weight="500" fill="#8b95a1">일반적인 냉장고 기준 · 냉기 나오는 위치는 모델마다 달라요</text>
+
+  <!-- 냉장고 몸체 -->
+  <rect x="32" y="104" width="576" height="468" rx="18" fill="#eef1f4" stroke="#c9d1d9" stroke-width="2"/>
+  <line x1="456" y1="104" x2="456" y2="572" stroke="#c9d1d9" stroke-width="2"/>
+
+  <!-- 안쪽 칸 -->
+  <rect x="48" y="120" width="392" height="96" rx="10" fill="#ffffff"/>
+  <text x="68" y="158" font-size="21" font-weight="700" fill="#191f28">위 칸</text>
+  <text x="68" y="190" font-size="18" font-weight="500" fill="#4e5968">바로 먹을 반찬, 남은 음식</text>
+  <text x="424" y="158" font-size="16" font-weight="500" fill="#8b95a1" text-anchor="end">온도 변화가 적은 편</text>
+
+  <rect x="48" y="224" width="392" height="112" rx="10" fill="#ffffff"/>
+  <text x="68" y="264" font-size="21" font-weight="700" fill="#191f28">가운데·아래 칸</text>
+  <text x="68" y="296" font-size="18" font-weight="500" fill="#4e5968">유제품, 달걀, 두부</text>
+  <text x="424" y="264" font-size="16" font-weight="500" fill="#8b95a1" text-anchor="end">안쪽이 더 차가운 편</text>
+
+  <rect x="48" y="344" width="392" height="96" rx="10" fill="#e0f2fe"/>
+  <text x="68" y="382" font-size="21" font-weight="700" fill="#191f28">신선 칸·전용 칸</text>
+  <text x="68" y="414" font-size="18" font-weight="500" fill="#4e5968">육류, 생선 (빨리 먹을 것)</text>
+  <text x="424" y="382" font-size="16" font-weight="500" fill="#0369a1" text-anchor="end">낮은 온도 유지</text>
+
+  <rect x="48" y="448" width="392" height="108" rx="10" fill="#e7f6ef"/>
+  <text x="68" y="488" font-size="21" font-weight="700" fill="#191f28">야채 칸</text>
+  <text x="68" y="520" font-size="18" font-weight="500" fill="#4e5968">채소, 과일</text>
+  <text x="424" y="488" font-size="16" font-weight="500" fill="#0b7f58" text-anchor="end">습도 유지</text>
+
+  <!-- 문 선반 -->
+  <rect x="472" y="120" width="120" height="436" rx="10" fill="#fff4e5"/>
+  <text x="532" y="158" font-size="21" font-weight="700" fill="#191f28" text-anchor="middle">문 선반</text>
+  <text x="532" y="184" font-size="15" font-weight="700" fill="#b45309" text-anchor="middle">온도 변화 가장 큼</text>
+  <rect x="484" y="216" width="96" height="88" rx="8" fill="#ffffff" stroke="#f3d3a4" stroke-width="2"/>
+  <text x="532" y="267" font-size="18" font-weight="500" fill="#4e5968" text-anchor="middle">소스·잼</text>
+  <rect x="484" y="320" width="96" height="88" rx="8" fill="#ffffff" stroke="#f3d3a4" stroke-width="2"/>
+  <text x="532" y="371" font-size="18" font-weight="500" fill="#4e5968" text-anchor="middle">음료</text>
+  <rect x="484" y="424" width="96" height="116" rx="8" fill="#ffffff" stroke="#f3d3a4" stroke-width="2"/>
+  <text x="532" y="472" font-size="16" font-weight="500" fill="#4e5968" text-anchor="middle">잘 상하지</text>
+  <text x="532" y="496" font-size="16" font-weight="500" fill="#4e5968" text-anchor="middle">않는 것</text>
+</svg>

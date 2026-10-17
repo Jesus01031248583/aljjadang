@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { marked } from "marked";
+import { ogSvg, svgToPng, svgSize } from "./images.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const config = JSON.parse(fs.readFileSync(path.join(root, "site.config.json"), "utf8"));
@@ -21,6 +22,31 @@ const ICONS = {
   glass: '<path d="M8 3h8l-.4 6a3.6 3.6 0 0 1-7.2 0z"/><path d="M12 12.6V21"/><path d="M8.5 21h7"/>',
   won: '<circle cx="12" cy="12" r="9"/><path d="M7.5 8l2 8 2.5-6 2.5 6 2-8"/><path d="M6.5 11.5h11"/>',
   doc: '<path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/>',
+  // 글 주제별 아이콘. 글 머리말에 icon: 이름 으로 지정하고, 없으면 카테고리 아이콘을 쓴다.
+  car: '<path d="M4 16v-4l2.2-5.2A1.5 1.5 0 0 1 7.6 6h8.8a1.5 1.5 0 0 1 1.4.8L20 12v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M4 12h16"/><path d="M7 14.5h1.5M15.5 14.5H17"/><path d="M6 17v2M18 17v2"/>',
+  snowflake: [0, 60, 120].map((r) => `<g transform="rotate(${r} 12 12)"><path d="M12 2.5v19"/><path d="M9.8 4.3 12 6.5l2.2-2.2M9.8 19.7 12 17.5l2.2 2.2"/></g>`).join(""),
+  bottle: '<path d="M10 2.5h4"/><path d="M10.5 2.5v2.8L9 7.5V20a1.5 1.5 0 0 0 1.5 1.5h3A1.5 1.5 0 0 0 15 20V7.5l-1.5-2.2V2.5"/><path d="M9 11.5h3M9 15h3"/>',
+  suitcase: '<rect x="4" y="7" width="16" height="13" rx="2"/><path d="M9 7V4.5h6V7"/><path d="M8 7v13M16 7v13"/>',
+  phone: '<rect x="6.5" y="2.5" width="11" height="19" rx="2.2"/><path d="M10.5 18.5h3"/>',
+  jacket: '<path d="M8.5 3 4 5.5 2.5 11.5l3 .8V21h13v-8.7l3-.8L20 5.5 15.5 3a3.5 3.5 0 0 1-7 0z"/><path d="M5.5 13h13M5.5 17h13M12 6.5V21"/>',
+  droplet: '<path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/><path d="M9 14.5a3 3 0 0 0 3 3"/>',
+  fridge: '<rect x="6" y="2.5" width="12" height="19" rx="2"/><path d="M6 9.5h12"/><path d="M9 5.2v1.8M9 12.5v3"/>',
+  key: '<circle cx="8" cy="15.5" r="4.5"/><path d="M11.2 12.3 20 3.5"/><path d="M17 6.5l2.5 2.5M14.5 9l2 2"/>',
+  truck: '<path d="M2.5 6h11v10h-11z"/><path d="M13.5 9.5h4l3.5 3.5V16h-7.5"/><circle cx="6.5" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/>',
+  bolt: '<path d="M13 2.5 4.5 13.5H11l-1 8 8.5-11H12z"/>',
+  flame: '<path d="M12 21.5a7 7 0 0 0 7-7c0-4-3-6.5-4-10-2 1.5-3 3.5-3 5.5-1.5-1-2.5-2-3-3.5-2.5 2-4 5-4 8a7 7 0 0 0 7 7z"/>',
+  receipt: '<path d="M5 2.5h14v19l-2.3-1.5-2.4 1.5-2.3-1.5-2.3 1.5-2.4-1.5L5 21.5z"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/>',
+  calculator: '<rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8 6h8v3.5H8z"/><path d="M8.5 13.5h.01M12 13.5h.01M15.5 13.5h.01M8.5 17.5h.01M12 17.5h.01M15.5 17.5h.01"/>',
+  shield: '<path d="M12 2.5 4.5 5.5v6c0 4.5 3.2 8.3 7.5 10 4.3-1.7 7.5-5.5 7.5-10v-6z"/><path d="M12 8.5v6M9 11.5h6"/>',
+  search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/><path d="M8 10.5h5M10.5 8v5"/>',
+  leaf: '<path d="M5 19C5 11 10 5 20 4c-1 10-7 15-15 15z"/><path d="M5 19l8-8"/>',
+  washer: '<rect x="4" y="2.5" width="16" height="19" rx="2"/><circle cx="12" cy="13.5" r="4.5"/><path d="M7.5 6h.01M10.5 6h.01"/>',
+  shower: '<path d="M5 21V8a4 4 0 0 1 8 0"/><path d="M9.5 10.5h7"/><path d="M11 14v.01M13 14.5v.01M15 14v.01M12 17.5v.01M14 17.5v.01"/>',
+  window: '<rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M12 3v18M4 12h16"/><path d="M7.5 15.5v1.5M16 6.5v1.5"/>',
+  liquor: '<path d="M10 2.5h4v3.5l2 3V20a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 8 20V9l2-3z"/><path d="M8 12.5h8v5H8z"/>',
+  bed: '<path d="M3 19V7M3 14.5h18V19M21 14.5v-2a3 3 0 0 0-3-3h-8v5"/><circle cx="6.5" cy="11.5" r="1.5"/>',
+  building: '<path d="M4 21V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v17"/><path d="M15 9h4a1 1 0 0 1 1 1v11"/><path d="M2.5 21h19"/><path d="M8 7h3M8 11h3M8 15h3"/>',
+  calendar: '<rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h3"/>',
 };
 const CATEGORY_STYLE = {
   "절약": { color: "#0e9f6e", icon: "wallet" },
@@ -67,11 +93,13 @@ const readMinutes = (body) => Math.max(1, Math.round(body.replace(/\s+/g, "").le
 // 같은 카테고리 카드끼리도 썸네일 무늬가 조금씩 다르도록 slug로 변주를 정한다.
 const variant = (slug) => [...slug].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 7) % 4;
 
+const postIcon = (p) => (ICONS[p.icon] ? p.icon : catStyle(p.category).icon);
+
 function thumb(p, size = "") {
   const s = catStyle(p.category);
   return `<div class="thumb thumb-v${variant(p.slug)} ${size}" style="--c:${s.color}">
     <span class="thumb-label">${esc(p.category)}</span>
-    ${icon(s.icon, "thumb-ico")}
+    ${icon(postIcon(p), "thumb-ico")}
   </div>`;
 }
 
@@ -90,7 +118,7 @@ function card(p) {
 </a>`;
 }
 
-function layout({ title, description, pathName, body, type = "website", jsonLd }) {
+function layout({ title, description, pathName, body, type = "website", jsonLd, image = "/og-image.png" }) {
   const fullTitle = title ? `${title} | ${config.title}` : `${config.title} - ${config.tagline}`;
   const canonical = siteUrl + pathName;
   const adsense = config.adsenseClient
@@ -109,7 +137,8 @@ function layout({ title, description, pathName, body, type = "website", jsonLd }
 <meta property="og:description" content="${esc(description || config.description)}">
 <meta property="og:url" content="${esc(canonical)}">
 <meta property="og:site_name" content="${esc(config.title)}">
-<meta property="og:image" content="${siteUrl}/og-image.png">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:image" content="${siteUrl}${image}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -174,7 +203,29 @@ const categories = [...new Set(posts.map((p) => p.category))];
 // "18~20" 같은 범위 표기가 취소선으로 바뀌지 않도록 물결표를 이스케이프한다.
 const fill = (s) => s.replace(/~/g, "\\~").replaceAll("{{email}}", config.email).replaceAll("{{title}}", config.title).replaceAll("{{author}}", config.author);
 // '보험다모아'**에서 처럼 따옴표·괄호 뒤에 조사가 붙으면 marked가 굵게 처리하지 못해 **가 그대로 남는다.
-const md = (s) => marked.parse(fill(s)).replace(/\*\*([^*<>\n]+?)\*\*/g, "<strong>$1</strong>");
+const md = (s) => figures(marked.parse(fill(s)).replace(/\*\*([^*<>\n]+?)\*\*/g, "<strong>$1</strong>"));
+
+// 본문 설명 그림: content/figures/이름.svg 를 2배 해상도 PNG로 굽고,
+// 마크다운에서 ![대체 텍스트](/figures/이름.png "그림 설명") 으로 넣는다.
+const figureDir = path.join(root, "content", "figures");
+const figureSizes = {};
+if (fs.existsSync(figureDir)) {
+  fs.mkdirSync(path.join(dist, "figures"), { recursive: true });
+  for (const f of fs.readdirSync(figureDir).filter((f) => f.endsWith(".svg"))) {
+    const svg = fs.readFileSync(path.join(figureDir, f), "utf8");
+    const size = svgSize(svg);
+    const name = f.replace(/\.svg$/, ".png");
+    figureSizes[name] = size;
+    fs.writeFileSync(path.join(dist, "figures", name), svgToPng(svg, size.width * 2));
+  }
+}
+function figures(html) {
+  return html.replace(/<p>(<img src="\/figures\/([^"]+)" alt="([^"]*)"(?: title="([^"]*)")?>)<\/p>/g, (_, img, name, alt, caption) => {
+    if (!figureSizes[name]) throw new Error(`그림 파일 없음: content/figures/${name.replace(/\.png$/, ".svg")}`);
+    const { width, height } = figureSizes[name];
+    return `<figure class="fig"><a href="/figures/${name}"><img src="/figures/${name}" alt="${alt}" width="${width}" height="${height}" loading="lazy" decoding="async"></a>${caption ? `<figcaption>${caption}</figcaption>` : ""}</figure>`;
+  });
+}
 
 // 본문 h2에 id를 달고 목차 항목을 모은다.
 function withToc(html) {
@@ -196,6 +247,16 @@ for (const [i, p] of posts.entries()) {
   const sameCat = posts.filter((o) => o !== p && o.category === p.category);
   const related = [...sameCat, ...posts.filter((o) => o !== p && o.category !== p.category)].slice(0, 3);
   const { html, toc } = withToc(md(p.body));
+  const image = `/thumbs/${p.slug}.png`;
+  write(image, svgToPng(ogSvg({
+    title: p.title,
+    category: p.category,
+    color: catStyle(p.category).color,
+    iconPaths: ICONS[postIcon(p)],
+    siteTitle: config.title,
+    tagline: config.tagline,
+    seed: variant(p.slug),
+  })));
   const body = `
 <article class="post">
   <header class="post-head">
@@ -225,12 +286,14 @@ ${related.length ? `<section class="related"><div class="wrap"><h2 class="sectio
     description: p.description,
     pathName: `/posts/${p.slug}/`,
     type: "article",
+    image,
     body,
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "Article",
       headline: p.title,
       description: p.description,
+      image: siteUrl + image,
       datePublished: p.date,
       dateModified: p.updated || p.date,
       author: { "@type": "Person", name: config.author },

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="440" viewBox="0 0 640 440" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="438" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">타이어 홈 깊이와 마모 한계선</text>
+  <text x="32" y="82" font-size="17" font-weight="500" fill="#8b95a1">타이어 단면을 옆에서 본 모습 (크기는 이해를 돕기 위한 것)</text>
+
+  <!-- 왼쪽: 여유 있는 타이어 -->
+  <g transform="translate(40 0)">
+    <rect x="0" y="290" width="260" height="34" rx="4" fill="#262b33"/>
+    <path d="M0 132h70v158H0zM110 132h50v158h-50zM200 132h60v158h-60z" fill="#4b5563"/>
+    <rect x="82" y="262" width="16" height="28" rx="3" fill="#f59e0b"/>
+    <rect x="172" y="262" width="16" height="28" rx="3" fill="#f59e0b"/>
+    <!-- 홈 깊이 치수 -->
+    <path d="M104 132v158" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5 4"/>
+    <path d="M99 132h10M99 290h10" stroke="#7c3aed" stroke-width="2"/>
+    <text x="104" y="118" font-size="17" font-weight="700" fill="#7c3aed" text-anchor="middle">홈 깊이 충분</text>
+    <text x="0" y="364" font-size="20" font-weight="700" fill="#191f28">여유 있는 타이어</text>
+    <text x="0" y="394" font-size="17" font-weight="500" fill="#4e5968">마모 한계선이 홈 바닥에</text>
+    <text x="0" y="418" font-size="17" font-weight="500" fill="#4e5968">낮게 보여요</text>
+  </g>
+
+  <!-- 오른쪽: 교체할 때 -->
+  <g transform="translate(340 0)">
+    <rect x="0" y="290" width="260" height="34" rx="4" fill="#262b33"/>
+    <path d="M0 262h70v28H0zM110 262h50v28h-50zM200 262h60v28h-60z" fill="#4b5563"/>
+    <rect x="82" y="262" width="16" height="28" rx="3" fill="#f59e0b"/>
+    <rect x="172" y="262" width="16" height="28" rx="3" fill="#f59e0b"/>
+    <path d="M-6 262h272" stroke="#e11d48" stroke-width="2" stroke-dasharray="6 5"/>
+    <!-- 화살표: 마모 한계선 -->
+    <path d="M90 200v52" stroke="#191f28" stroke-width="2"/>
+    <path d="M84 244l6 10 6-10" fill="none" stroke="#191f28" stroke-width="2" stroke-linejoin="round"/>
+    <text x="90" y="188" font-size="17" font-weight="700" fill="#191f28" text-anchor="middle">마모 한계선 (1.6mm)</text>
+    <text x="0" y="364" font-size="20" font-weight="700" fill="#e11d48">교체할 때</text>
+    <text x="0" y="394" font-size="17" font-weight="500" fill="#4e5968">타이어 표면과 마모 한계선</text>
+    <text x="0" y="418" font-size="17" font-weight="500" fill="#4e5968">높이가 같아졌어요</text>
+  </g>
+</svg>

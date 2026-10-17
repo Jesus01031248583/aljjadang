@@ -2,6 +2,7 @@
 title: 여기에 글 제목을 쓰세요
 description: 검색 결과에 보일 1~2문장 요약을 여기에 쓰세요.
 category: 절약
+icon: wallet
 date: 2026-10-16
 draft: true
 ---

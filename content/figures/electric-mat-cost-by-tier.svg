@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="398" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">같은 전기장판, 구간 따라 달라지는 요금</text>
+  <text x="32" y="82" font-size="17" font-weight="500" fill="#8b95a1">평균 100W · 하루 8시간 · 30일 = 한 달 24kWh를 더 쓸 때</text>
+
+  <!-- 기준선 -->
+  <line x1="200" y1="112" x2="200" y2="330" stroke="#c9d1d9" stroke-width="2"/>
+
+  <text x="184" y="149" font-size="19" font-weight="700" fill="#191f28" text-anchor="end">1구간</text>
+  <text x="184" y="172" font-size="15" font-weight="500" fill="#8b95a1" text-anchor="end">200kWh 이하</text>
+  <rect x="200" y="130" width="126" height="48" rx="4" fill="#0e9f6e"/>
+  <text x="338" y="162" font-size="20" font-weight="700" fill="#191f28">약 3,600원</text>
+
+  <text x="184" y="219" font-size="19" font-weight="700" fill="#191f28" text-anchor="end">2구간</text>
+  <text x="184" y="242" font-size="15" font-weight="500" fill="#8b95a1" text-anchor="end">201~400kWh</text>
+  <rect x="200" y="200" width="216" height="48" rx="4" fill="#0e9f6e"/>
+  <text x="428" y="232" font-size="20" font-weight="700" fill="#191f28">약 6,200원</text>
+
+  <text x="184" y="289" font-size="19" font-weight="700" fill="#191f28" text-anchor="end">3구간</text>
+  <text x="184" y="312" font-size="15" font-weight="500" fill="#8b95a1" text-anchor="end">400kWh 초과</text>
+  <rect x="200" y="270" width="300" height="48" rx="4" fill="#0e9f6e"/>
+  <text x="512" y="302" font-size="20" font-weight="700" fill="#191f28">약 8,600원</text>
+
+  <text x="32" y="368" font-size="16" font-weight="500" fill="#8b95a1">1kWh 더 쓸 때 약 150원·260원·360원으로 잡은 대략값 (2026년 10월, 주택용 저압)</text>
+</svg>

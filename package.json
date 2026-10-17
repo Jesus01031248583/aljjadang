@@ -8,6 +8,7 @@
     "preview": "node src/build.mjs && npx --yes serve dist"
   },
   "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "marked": "^12.0.2"
   }
 }
