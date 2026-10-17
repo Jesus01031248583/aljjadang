@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { marked } from "marked";
 import { ogSvg, svgToPng, svgSize } from "./images.mjs";
+import { isPublic, publishTime } from "./schedule.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const config = JSON.parse(fs.readFileSync(path.join(root, "site.config.json"), "utf8"));
@@ -195,9 +196,14 @@ fs.mkdirSync(dist, { recursive: true });
 for (const f of fs.readdirSync(dist)) fs.rmSync(path.join(dist, f), { recursive: true, force: true });
 for (const f of ["style.css", "favicon.svg", "og-image.png"]) fs.copyFileSync(path.join(root, "src", f), path.join(dist, f));
 
-const posts = readDir("content/posts")
-  .filter((p) => p.draft !== "true")
+const allPosts = readDir("content/posts");
+const posts = allPosts
+  .filter((p) => isPublic(p))
   .sort((a, b) => b.date.localeCompare(a.date));
+for (const p of allPosts) {
+  const t = publishTime(p);
+  if (t && !isPublic(p)) console.log(`예약 대기: ${p.slug} (${p.publishAt} 공개)`);
+}
 const pages = readDir("content/pages");
 const categories = [...new Set(posts.map((p) => p.category))];
 // "18~20" 같은 범위 표기가 취소선으로 바뀌지 않도록 물결표를 이스케이프한다.

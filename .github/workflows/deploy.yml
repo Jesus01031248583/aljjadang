@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # 예약 발행: 10분마다 공개 시각(publishAt)이 지난 글이 있는지 확인한다.
+  # GitHub 사정에 따라 실행이 몇 분~수십 분 늦어질 수 있다.
+  schedule:
+    - cron: "*/10 * * * *"
 
 permissions:
   contents: read
@@ -12,25 +16,40 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      deployed: ${{ steps.gate.outputs.due }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+
+      # 정기 실행일 때만: 공개할 예약 글이 없으면 여기서 끝낸다.
+      - id: gate
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then echo "due=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          curl -fsS https://aljjadang.com/sitemap.xml -o /tmp/sitemap.xml || true
+          node src/due.mjs /tmp/sitemap.xml | tee /dev/stderr | grep '^due=' >> "$GITHUB_OUTPUT"
+
+      - if: steps.gate.outputs.due == 'true'
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+      - if: steps.gate.outputs.due == 'true'
+        run: npm ci
+      - if: steps.gate.outputs.due == 'true'
+        run: npm run build
+      - if: steps.gate.outputs.due == 'true'
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
   deploy:
     needs: build
+    if: needs.build.outputs.deployed == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
