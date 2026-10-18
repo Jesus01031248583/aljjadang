@@ -125,6 +125,11 @@ function layout({ title, description, pathName, body, type = "website", jsonLd, 
   const adsense = config.adsenseClient
     ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${esc(config.adsenseClient)}" crossorigin="anonymous"></script>`
     : "";
+  // 검색엔진 소유 확인 태그 (site.config.json의 verification에 코드만 넣으면 된다)
+  const verify = Object.entries({ "google-site-verification": config.verification?.google, "naver-site-verification": config.verification?.naver })
+    .filter(([, v]) => v)
+    .map(([k, v]) => `<meta name="${k}" content="${esc(v)}">`)
+    .join("\n");
   return `<!doctype html>
 <html lang="${config.lang}">
 <head>
@@ -139,6 +144,7 @@ function layout({ title, description, pathName, body, type = "website", jsonLd, 
 <meta property="og:url" content="${esc(canonical)}">
 <meta property="og:site_name" content="${esc(config.title)}">
 <meta name="robots" content="max-image-preview:large">
+${verify}
 <meta property="og:image" content="${siteUrl}${image}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
