@@ -36,5 +36,5 @@ ${warnHtml}`;
 </table>
 ${warnHtml}
 <p class="calc-note">세전 금액이에요. 그 주에 정한 근무일을 모두 나가야(개근) 주휴수당이 생겨요.${next ? ` ${year + 1}년 1월부터 최저임금은 시간당 ${won(next)}원이에요.` : ""}</p>`;
-  });
+  }, { stale: ["minWage"] });
 }

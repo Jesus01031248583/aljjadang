@@ -1,0 +1,31 @@
+name: 계산기 기준값 감시
+
+# 매일 한국은행 기준금리, 관련 법령 시행일, 유효기간, 정기 점검일을 확인하고
+# 달라진 점이 있으면 '계산기 점검' 라벨 이슈로 알린다. 계산기 값은 자동으로 바꾸지 않는다.
+on:
+  schedule:
+    # 매일 11:17 (한국 시각). 금통위 결정(오전 10시 전후) 당일에 잡히도록 오전 늦게 돈다.
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - src/watch.mjs
+      - src/watch-sources.json
+      - src/calc/rates.js
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node src/watch.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

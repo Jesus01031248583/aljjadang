@@ -235,15 +235,19 @@ for (const c of calcs) {
 }
 const calcBySlug = Object.fromEntries(calcs.map((c) => [c.slug, c]));
 
-// 요율 점검 알림: 마지막 점검일 다음의 1월 1일·7월 1일이 지났으면 경고한다.
+// 요율 점검 알림: 마지막 점검일 다음의 1월 1일·7월 1일이 지났거나, 유효기간이 끝난 값이 있으면 경고한다.
+// 매일 도는 자동 감시(src/watch.mjs)가 같은 내용을 GitHub 이슈로도 알린다.
+const { RATES_CHECKED, VALID_UNTIL } = await import("./calc/rates.js");
 {
-  const { RATES_CHECKED } = await import("./calc/rates.js");
   const [y, m] = RATES_CHECKED.split("-").map(Number);
   const due = m < 7 ? `${y}-07-01` : `${y + 1}-01-01`;
   const today = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
   if (today >= due) {
     console.warn(`\n⚠️  계산기 요율 점검 필요: ${due} 이후 아직 점검하지 않았습니다 (마지막 점검 ${RATES_CHECKED}).`);
     console.warn(`    1월: 최저임금·4대보험 요율 / 7월: 국민연금 기준소득월액 상·하한 → src/calc/rates.js 확인 후 RATES_CHECKED 갱신\n`);
+  }
+  for (const { until, label } of Object.values(VALID_UNTIL)) {
+    if (today > until) console.warn(`⚠️  유효기간 지남: ${label} (${until}까지) → 계산기 화면에 "새 기준 확인 중" 안내가 나가는 중`);
   }
 }
 const categories = [...new Set(posts.map((p) => p.category))];
@@ -384,7 +388,7 @@ for (const c of calcs) {
       <a class="chip-link" href="/calculators/"><span class="chip" style="--c:${CALC_COLOR}">계산기</span></a>
       <h1>${esc(c.title)}</h1>
       <p class="dek">${esc(c.description)}</p>
-      <p class="meta">${c.basis ? `${esc(c.basis)} · ` : ""}${c.updated ? `수정 ${formatDate(c.updated)}` : formatDate(c.date)}</p>
+      <p class="meta">${c.basis ? `${esc(c.basis)} · ` : ""}${formatDate(RATES_CHECKED)} 기준 확인</p>
     </div>
   </header>
   <div class="wrap narrow">

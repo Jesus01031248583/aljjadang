@@ -38,6 +38,7 @@ if (typeof document !== "undefined") {
 ${v.week > 40 ? `<p class="calc-warn">주 40시간을 넘는 시간은 연장근로라서 시급의 1.5배를 따로 받아요. 여기서는 40시간까지만 계산했어요.</p>` : ""}
 <p class="calc-note">세전 금액이에요. 월급에 연장·야간근로 수당이나 1개월을 넘는 주기로 받는 돈이 섞여 있으면 실제 시급과 다를 수 있어요.</p>`;
   }, {
+    stale: ["minWage"],
     onChange(form, v) {
       if (prevFrom && v.from !== prevFrom && last) form.elements.amount.value = Math.round(last[v.from]).toLocaleString("ko-KR");
       prevFrom = v.from;

@@ -68,5 +68,5 @@ if (typeof document !== "undefined") {
 </table>
 ${v.kids > r.kidCount ? `<p class="calc-warn">자녀 수는 부양가족 수(본인 포함)보다 적어야 해요. ${r.kidCount}명으로 계산했어요.</p>` : ""}
 <p class="calc-note">${R.year}년 요율과 근로소득 간이세액표(2026. 2. 27. 개정) 기준이에요. 회사마다 비과세 항목이나 보험료 정산이 달라 명세서와 몇십 원~몇천 원 차이가 날 수 있어요.</p>`;
-  });
+  }, { stale: ["insurance", "pensionCap"] });
 }

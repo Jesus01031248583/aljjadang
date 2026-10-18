@@ -1,4 +1,5 @@
 // 계산기 공통 도구: 숫자 입력 서식, 입력값 읽기, 주소(쿼리)로 상태 공유.
+import { VALID_UNTIL, MIN_WAGE } from "./rates.js";
 
 export const won = (n) => Math.round(n).toLocaleString("ko-KR");
 export const floor10 = (n) => Math.floor(n / 10 + 1e-9) * 10;
@@ -81,7 +82,8 @@ function toQuery(form) {
 
 // 계산기 하나를 연결한다. compute(값) 은 결과 HTML 문자열을 돌려준다.
 // 입력이 바뀔 때마다 주소에 값을 담아 두어, 링크만 보내도 같은 결과가 열리게 한다.
-export function setup(compute, { onChange } = {}) {
+// stale: 이 계산기가 쓰는 유효기간 있는 값의 키 목록 (또는 입력값을 받아 목록을 돌려주는 함수)
+export function setup(compute, { onChange, stale } = {}) {
   const root = document.querySelector(".calc");
   const form = root.querySelector("form");
   const out = root.querySelector(".calc-result");
@@ -100,7 +102,8 @@ export function setup(compute, { onChange } = {}) {
     const v = read(form);
     onChange?.(form, v);
     hints();
-    out.innerHTML = compute(read(form));
+    const values = read(form);
+    out.innerHTML = staleNote(...(typeof stale === "function" ? stale(values) : stale || [])) + compute(values);
   };
   form.addEventListener("input", (e) => {
     if (e.target.dataset.money !== undefined) formatMoneyInput(e.target);
@@ -121,6 +124,18 @@ export function setup(compute, { onChange } = {}) {
       else { await navigator.clipboard.writeText(url); share.textContent = "링크를 복사했어요"; setTimeout(() => (share.textContent = "결과 링크 공유"), 2000); }
     } catch { /* 공유 창을 닫은 경우 */ }
   });
+}
+
+// 유효기간이 지난 기준값을 쓰고 있으면 결과 위에 안내를 띄운다. keys: VALID_UNTIL의 키, "minWage"(올해 최저임금 미입력)
+export function staleNote(...keys) {
+  const today = todayKST(), year = Number(today.slice(0, 4));
+  const msgs = keys.flatMap((k) => {
+    if (k === "minWage") return MIN_WAGE[year] ? [] : [`${year}년 최저임금이 아직 반영되지 않아 이전 최저임금으로 비교하고 있어요.`];
+    const v = VALID_UNTIL[k];
+    return v && today > v.until ? [`${v.label}의 적용 기간(${v.until.replaceAll("-", ". ")}.까지)이 끝나 새 기준을 확인하고 있어요.`] : [];
+  });
+  if (!msgs.length) return "";
+  return `<p class="calc-warn"><b>새 기준 확인 중:</b> ${msgs.join(" ")} 반영되기 전까지는 결과가 실제와 다를 수 있어요.</p>`;
 }
 
 // 결과 표의 한 줄

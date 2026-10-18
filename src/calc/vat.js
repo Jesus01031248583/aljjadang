@@ -66,6 +66,7 @@ ${r.exempt ? `<p class="calc-tip">납부는 면제되지만 신고는 다음 해
 ${v.ssales >= 104e6 ? `<p class="calc-warn">연 매출(공급대가)이 1억 400만 원 이상이면 다음 해 7월부터 일반과세자로 바뀌어요.</p>` : ""}
 <p class="calc-note">간이과세자는 공제액이 납부세액보다 많아도 환급되지 않아요. 카드 공제는 2026년 말까지 1.3%, 연 1,000만 원 한도예요.</p>`;
   }, {
+    stale: (v) => (v.mode === "price" ? [] : ["cardCredit"]),
     onChange(form, v) {
       for (const el of form.querySelectorAll("[data-mode]")) el.hidden = el.dataset.mode !== v.mode;
       form.querySelector("[data-mode-not]").hidden = v.mode === "price";
