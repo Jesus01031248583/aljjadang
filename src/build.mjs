@@ -53,6 +53,7 @@ const ICONS = {
   clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
   briefcase: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/><path d="M3 12.5h18M11 12.5v2h2v-2"/>',
   swap: '<path d="M4 8h14l-3.5-3.5"/><path d="M20 16H6l3.5 3.5"/>',
+  tag: '<path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="7.5" cy="7.5" r="1.5"/>',
 };
 const CATEGORY_STYLE = {
   "절약": { color: "#0e9f6e", icon: "wallet" },
@@ -417,7 +418,7 @@ ${related.length ? `<section class="related"><div class="wrap"><h2 class="sectio
 if (calcs.length) {
   write("calculators/index.html", layout({
     title: "생활 계산기",
-    description: "연봉 실수령액, 퇴직금, 연차, 대출이자, 주휴수당, 3.3% 원천징수처럼 자주 찾는 금액을 바로 계산해 보세요. 2026년 요율과 법령 기준을 반영했습니다.",
+    description: "연봉 실수령액, 퇴직금, 대출이자, 전월세 전환, 중개수수료, 자동차세처럼 자주 찾는 금액을 바로 계산해 보세요. 2026년 요율과 법령 기준을 반영했습니다.",
     pathName: "/calculators/",
     body: `<article class="post page"><header class="post-head"><div class="wrap narrow"><h1>생활 계산기</h1><p class="dek">자주 찾는 금액을 몇 번의 입력으로 계산해 보세요. 요율과 기준은 정부 고시와 법령을 확인해 반영하고, 바뀌면 바로 고칩니다.</p></div></header>
 <div class="wrap narrow"><div class="calc-list">${calcs.map(calcCard).join("")}</div>

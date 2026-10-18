@@ -1,0 +1,30 @@
+<form class="calc-form" autocomplete="off">
+  <fieldset class="field seg seg-3">
+    <legend>거래 종류</legend>
+    <div class="seg-opts">
+      <label><input type="radio" name="deal" value="sale" checked><span>매매</span></label>
+      <label><input type="radio" name="deal" value="jeonse"><span>전세</span></label>
+      <label><input type="radio" name="deal" value="monthly"><span>월세</span></label>
+    </div>
+  </fieldset>
+  <div class="field">
+    <label for="f-kind">건물 종류</label>
+    <select id="f-kind" name="kind">
+      <option value="house" selected>주택 (아파트·빌라·단독 등)</option>
+      <option value="officetel">주거용 오피스텔 (전용 85㎡ 이하, 부엌·화장실 있음)</option>
+      <option value="other">그 밖의 오피스텔·상가·토지</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="f-price" data-label-sale="매매 가격" data-label-jeonse="전세 보증금" data-label-monthly="보증금">매매 가격</label>
+    <div class="input"><input id="f-price" name="price" data-money inputmode="numeric" value="500000000"><span>원</span></div>
+    <p class="hint" data-hint-for="price"></p>
+  </div>
+  <div class="field" data-show-monthly>
+    <label for="f-rent">월세</label>
+    <div class="input"><input id="f-rent" name="rent" data-money inputmode="numeric" value="500000"><span>원</span></div>
+  </div>
+  <label class="check"><input type="checkbox" name="vat"><span>중개사무소가 일반과세자라 부가세 10%를 따로 받는 경우</span></label>
+</form>
+<div class="calc-result" aria-live="polite"></div>
+<button type="button" class="calc-share" data-share>결과 링크 공유</button>

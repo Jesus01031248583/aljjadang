@@ -1,0 +1,59 @@
+<form class="calc-form" autocomplete="off">
+  <fieldset class="field seg seg-3">
+    <legend>무엇을 계산할까요?</legend>
+    <div class="seg-opts">
+      <label><input type="radio" name="mode" value="price" checked><span>VAT 포함·별도</span></label>
+      <label><input type="radio" name="mode" value="general"><span>일반과세자</span></label>
+      <label><input type="radio" name="mode" value="simple"><span>간이과세자</span></label>
+    </div>
+  </fieldset>
+  <div data-mode="price">
+    <fieldset class="field seg">
+      <legend>넣을 금액</legend>
+      <div class="seg-opts">
+        <label><input type="radio" name="base" value="supply" checked><span>공급가액 (VAT 별도)</span></label>
+        <label><input type="radio" name="base" value="total"><span>합계 (VAT 포함)</span></label>
+      </div>
+    </fieldset>
+    <div class="field">
+      <label for="f-amount">금액</label>
+      <div class="input"><input id="f-amount" name="amount" data-money inputmode="numeric" value="1000000"><span>원</span></div>
+      <p class="hint" data-hint-for="amount"></p>
+    </div>
+  </div>
+  <div data-mode="general">
+    <div class="field">
+      <label for="f-sales">매출 공급가액 (VAT 별도, 신고 기간 합계)</label>
+      <div class="input"><input id="f-sales" name="sales" data-money inputmode="numeric" value="30000000"><span>원</span></div>
+      <p class="hint" data-hint-for="sales"></p>
+    </div>
+    <div class="field">
+      <label for="f-buys">매입 공급가액 (세금계산서·카드 영수증 증빙분)</label>
+      <div class="input"><input id="f-buys" name="buys" data-money inputmode="numeric" value="12000000"><span>원</span></div>
+      <p class="hint" data-hint-for="buys"></p>
+    </div>
+  </div>
+  <div data-mode="simple">
+    <div class="field">
+      <label for="f-ssales">1년 매출 (VAT 포함 공급대가)</label>
+      <div class="input"><input id="f-ssales" name="ssales" data-money inputmode="numeric" value="60000000"><span>원</span></div>
+      <p class="hint" data-hint-for="ssales"></p>
+    </div>
+    <div class="field">
+      <label for="f-industry">업종</label>
+      <select id="f-industry" name="industry"></select>
+    </div>
+    <div class="field">
+      <label for="f-sbuys">1년 매입 (VAT 포함, 세금계산서·카드 영수증 증빙분)</label>
+      <div class="input"><input id="f-sbuys" name="sbuys" data-money inputmode="numeric" value="30000000"><span>원</span></div>
+      <p class="hint" data-hint-for="sbuys"></p>
+    </div>
+  </div>
+  <div class="field" data-mode-not="price">
+    <label for="f-card">그중 카드·현금영수증 매출 (VAT 포함)</label>
+    <div class="input"><input id="f-card" name="card" data-money inputmode="numeric" value="0"><span>원</span></div>
+    <p class="hint">개인사업자만 공제돼요. 법인과 직전 연도 매출 10억 원 초과 사업자는 0으로 두세요.</p>
+  </div>
+</form>
+<div class="calc-result" aria-live="polite"></div>
+<button type="button" class="calc-share" data-share>결과 링크 공유</button>

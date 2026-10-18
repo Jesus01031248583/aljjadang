@@ -1,0 +1,61 @@
+<form class="calc-form" autocomplete="off">
+  <fieldset class="field seg">
+    <legend>무엇을 계산할까요?</legend>
+    <div class="seg-opts">
+      <label><input type="radio" name="mode" value="convert" checked><span>보증금 ↔ 월세 바꾸기</span></label>
+      <label><input type="radio" name="mode" value="rate"><span>두 조건 비교</span></label>
+    </div>
+  </fieldset>
+  <div data-mode="convert">
+    <div class="field-row">
+      <div class="field">
+        <label for="f-dep">지금 보증금</label>
+        <div class="input"><input id="f-dep" name="dep" data-money inputmode="numeric" value="300000000"><span>원</span></div>
+        <p class="hint" data-hint-for="dep"></p>
+      </div>
+      <div class="field">
+        <label for="f-rent">지금 월세</label>
+        <div class="input"><input id="f-rent" name="rent" data-money inputmode="numeric" value="0"><span>원</span></div>
+      </div>
+    </div>
+    <div class="field">
+      <label for="f-newdep">바꾼 뒤 보증금</label>
+      <div class="input"><input id="f-newdep" name="newdep" data-money inputmode="numeric" value="100000000"><span>원</span></div>
+      <p class="hint" data-hint-for="newdep"></p>
+    </div>
+  </div>
+  <div data-mode="rate">
+    <div class="field-row">
+      <div class="field">
+        <label for="f-adep">조건 A 보증금</label>
+        <div class="input"><input id="f-adep" name="adep" data-money inputmode="numeric" value="300000000"><span>원</span></div>
+      </div>
+      <div class="field">
+        <label for="f-arent">조건 A 월세</label>
+        <div class="input"><input id="f-arent" name="arent" data-money inputmode="numeric" value="0"><span>원</span></div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="f-bdep">조건 B 보증금</label>
+        <div class="input"><input id="f-bdep" name="bdep" data-money inputmode="numeric" value="100000000"><span>원</span></div>
+      </div>
+      <div class="field">
+        <label for="f-brent">조건 B 월세</label>
+        <div class="input"><input id="f-brent" name="brent" data-money inputmode="numeric" value="900000"><span>원</span></div>
+      </div>
+    </div>
+    <div class="field">
+      <label for="f-loan">보증금 마련 대출 금리 (선택)</label>
+      <div class="input"><input id="f-loan" name="loan" data-num inputmode="decimal" value="4.0"><span>%</span></div>
+      <p class="hint">전세대출 금리를 넣으면 어느 쪽이 유리한지 함께 알려 드려요.</p>
+    </div>
+  </div>
+  <div class="field" data-mode="convert">
+    <label for="f-conv">전환율 (연)</label>
+    <div class="input"><input id="f-conv" name="conv" data-num inputmode="decimal" value="" data-default-conv><span>%</span></div>
+    <p class="hint" data-conv-hint></p>
+  </div>
+</form>
+<div class="calc-result" aria-live="polite"></div>
+<button type="button" class="calc-share" data-share>결과 링크 공유</button>

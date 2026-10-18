@@ -1,0 +1,36 @@
+<form class="calc-form" autocomplete="off">
+  <fieldset class="field seg">
+    <legend>차 종류 (비영업용 승용차)</legend>
+    <div class="seg-opts">
+      <label><input type="radio" name="fuel" value="ice" checked><span>휘발유·경유·LPG·하이브리드</span></label>
+      <label><input type="radio" name="fuel" value="ev"><span>전기·수소차</span></label>
+    </div>
+  </fieldset>
+  <div class="field" data-show-ice>
+    <label for="f-cc">배기량</label>
+    <div class="input"><input id="f-cc" name="cc" data-num inputmode="numeric" value="1598"><span>cc</span></div>
+    <p class="hint">자동차등록증의 '배기량' 칸에 적힌 숫자예요.</p>
+  </div>
+  <div class="field-row">
+    <div class="field" data-show-ice>
+      <label for="f-reg">최초 등록</label>
+      <input class="date" id="f-reg" name="reg" type="month" value="2020-05">
+    </div>
+    <div class="field">
+      <label for="f-year">세금 낼 연도</label>
+      <select id="f-year" name="year" data-years></select>
+    </div>
+  </div>
+  <div class="field">
+    <label for="f-prepay">연납 (미리 한꺼번에 내기)</label>
+    <select id="f-prepay" name="prepay">
+      <option value="none">연납 안 함 (6월·12월에 나눠 내기)</option>
+      <option value="1" selected>1월에 연납</option>
+      <option value="3">3월에 연납</option>
+      <option value="6">6월에 연납</option>
+      <option value="9">9월에 연납</option>
+    </select>
+  </div>
+</form>
+<div class="calc-result" aria-live="polite"></div>
+<button type="button" class="calc-share" data-share>결과 링크 공유</button>
