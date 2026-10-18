@@ -254,7 +254,9 @@ const categories = [...new Set(posts.map((p) => p.category))];
 // "18~20" 같은 범위 표기가 취소선으로 바뀌지 않도록 물결표를 이스케이프한다.
 const fill = (s) => s.replace(/~/g, "\\~").replaceAll("{{email}}", config.email).replaceAll("{{title}}", config.title).replaceAll("{{author}}", config.author);
 // '보험다모아'**에서 처럼 따옴표·괄호 뒤에 조사가 붙으면 marked가 굵게 처리하지 못해 **가 그대로 남는다.
-const md = (s) => calcCards(figures(marked.parse(fill(s)).replace(/\*\*([^*<>\n]+?)\*\*/g, "<strong>$1</strong>")));
+// 표는 가로 스크롤 상자로 감싼다. 표 자체를 block으로 만들면 내용이 좁을 때 오른쪽이 빈다.
+const wrapTables = (html) => html.replace(/<table>/g, '<div class="table-wrap"><table>').replace(/<\/table>/g, "</table></div>");
+const md = (s) => calcCards(figures(wrapTables(marked.parse(fill(s)).replace(/\*\*([^*<>\n]+?)\*\*/g, "<strong>$1</strong>"))));
 
 // 글 본문에 {{calc:이름}} 한 줄을 넣으면 그 계산기로 가는 카드가 들어간다.
 function calcCard(c, compact = false) {
