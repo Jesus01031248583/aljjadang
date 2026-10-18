@@ -231,6 +231,18 @@ for (const c of calcs) {
   }
 }
 const calcBySlug = Object.fromEntries(calcs.map((c) => [c.slug, c]));
+
+// 요율 점검 알림: 마지막 점검일 다음의 1월 1일·7월 1일이 지났으면 경고한다.
+{
+  const { RATES_CHECKED } = await import("./calc/rates.js");
+  const [y, m] = RATES_CHECKED.split("-").map(Number);
+  const due = m < 7 ? `${y}-07-01` : `${y + 1}-01-01`;
+  const today = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
+  if (today >= due) {
+    console.warn(`\n⚠️  계산기 요율 점검 필요: ${due} 이후 아직 점검하지 않았습니다 (마지막 점검 ${RATES_CHECKED}).`);
+    console.warn(`    1월: 최저임금·4대보험 요율 / 7월: 국민연금 기준소득월액 상·하한 → src/calc/rates.js 확인 후 RATES_CHECKED 갱신\n`);
+  }
+}
 const categories = [...new Set(posts.map((p) => p.category))];
 // "18~20" 같은 범위 표기가 취소선으로 바뀌지 않도록 물결표를 이스케이프한다.
 const fill = (s) => s.replace(/~/g, "\\~").replaceAll("{{email}}", config.email).replaceAll("{{title}}", config.title).replaceAll("{{author}}", config.author);
