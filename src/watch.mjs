@@ -140,6 +140,9 @@ async function report() {
   }
 }
 
+// 알림 경로 시험: watch-sources.json에 "testIssue" 제목을 넣으면 그 제목으로 이슈를 한 번 만든다.
+if (sources.testIssue) findings.push({ title: sources.testIssue, body: "알림 메일이 잘 오는지 확인하는 시험 이슈입니다. 메일을 받으셨다면 이 이슈는 닫아도 됩니다." });
+
 await checkBaseRate();
 await checkLaws();
 checkExpiry();
