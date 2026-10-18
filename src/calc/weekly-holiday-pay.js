@@ -1,13 +1,6 @@
 import { setup, won, row } from "./common.js";
 import { MIN_WAGE } from "./rates.js";
-
-const WEEKS_PER_MONTH = 365 / 7 / 12; // 약 4.345주
-
-// 1주 소정근로시간이 15시간 이상이면 (주 근로시간 ÷ 40) × 8시간분을 받는다. 40시간을 넘어도 8시간까지다.
-export function weeklyHolidayHours(weekHours) {
-  if (weekHours < 15) return 0;
-  return (Math.min(weekHours, 40) / 40) * 8;
-}
+import { WEEKS_PER_MONTH, weeklyHolidayHours } from "./labor.js";
 
 const hrs = (n) => String(Math.round(n * 100) / 100);
 

@@ -23,3 +23,20 @@ export const INSURANCE = {
 
 // 이자소득세 14% + 지방소득세 1.4%
 export const INTEREST_TAX = 0.154;
+
+// 종합소득세 기본세율 (소득세법 제55조, 2023년 이후). [과세표준 상한, 세율, 누진공제]
+export const INCOME_TAX_BRACKETS = [
+  [14e6, 0.06, 0],
+  [50e6, 0.15, 1.26e6],
+  [88e6, 0.24, 5.76e6],
+  [150e6, 0.35, 15.44e6],
+  [300e6, 0.38, 19.94e6],
+  [500e6, 0.40, 25.94e6],
+  [1000e6, 0.42, 35.94e6],
+  [Infinity, 0.45, 65.94e6],
+];
+
+// 사업소득(인적용역) 원천징수 3% + 지방소득세 0.3%
+export const BUSINESS_WITHHOLDING = 0.03;
+// 기타소득(강연료·원고료 등): 필요경비 60%를 뺀 금액에 20% (+ 지방소득세 2%). 기타소득금액이 건별 5만 원 이하면 과세하지 않는다.
+export const OTHER_INCOME = { expenseRate: 0.6, rate: 0.2, exemptUnder: 50000 };

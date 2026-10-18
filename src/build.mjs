@@ -51,6 +51,8 @@ const ICONS = {
   coins: '<ellipse cx="9" cy="6.5" rx="5.5" ry="2.5"/><path d="M3.5 6.5v4c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5v-4"/><path d="M3.5 10.5v2.5c0 1.4 2.5 2.5 5.5 2.5"/><ellipse cx="15" cy="15" rx="5.5" ry="2.5"/><path d="M9.5 15v3.5c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5V15"/>',
   percent: '<path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>',
   clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+  briefcase: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/><path d="M3 12.5h18M11 12.5v2h2v-2"/>',
+  swap: '<path d="M4 8h14l-3.5-3.5"/><path d="M20 16H6l3.5 3.5"/>',
 };
 const CATEGORY_STYLE = {
   "절약": { color: "#0e9f6e", icon: "wallet" },
@@ -250,8 +252,8 @@ const fill = (s) => s.replace(/~/g, "\\~").replaceAll("{{email}}", config.email)
 const md = (s) => calcCards(figures(marked.parse(fill(s)).replace(/\*\*([^*<>\n]+?)\*\*/g, "<strong>$1</strong>")));
 
 // 글 본문에 {{calc:이름}} 한 줄을 넣으면 그 계산기로 가는 카드가 들어간다.
-function calcCard(c) {
-  return `<a class="calc-card" href="/calculators/${c.slug}/">${icon(c.icon || "calculator", "calc-card-ico")}<span><b>${esc(c.title)}</b><small>${esc(c.short || c.description)}</small></span><em>계산하기</em></a>`;
+function calcCard(c, compact = false) {
+  return `<a class="calc-card" href="/calculators/${c.slug}/">${icon(c.icon || "calculator", "calc-card-ico")}<span><b>${esc(compact ? `${c.navTitle || c.title} 계산기` : c.title)}</b><small>${esc(c.short || c.description)}</small></span><em>계산하기</em></a>`;
 }
 function calcCards(html) {
   return html.replace(/<p>\{\{calc:([\w-]+)\}\}<\/p>/g, (_, slug) => {
@@ -388,7 +390,7 @@ for (const c of calcs) {
     <div class="calc" data-calc="${c.slug}">${form}</div>
     ${toc.length >= 3 ? `<nav class="toc" aria-label="목차"><p class="toc-title">계산 방법과 기준</p><ol>${toc.map((t) => `<li><a href="#${t.id}">${t.html}</a></li>`).join("")}</ol></nav>` : ""}
     <div class="content">${html}</div>
-    ${others.length ? `<div class="calc-more"><p class="toc-title">다른 계산기</p>${others.map(calcCard).join("")}</div>` : ""}
+    ${others.length ? `<div class="calc-more"><p class="toc-title">다른 계산기</p>${others.map((o) => calcCard(o, true)).join("")}</div>` : ""}
   </div>
 </article>
 ${related.length ? `<section class="related"><div class="wrap"><h2 class="section-title">함께 보면 좋은 글</h2><div class="grid">${related.map(card).join("")}</div></div></section>` : ""}`;
@@ -415,7 +417,7 @@ ${related.length ? `<section class="related"><div class="wrap"><h2 class="sectio
 if (calcs.length) {
   write("calculators/index.html", layout({
     title: "생활 계산기",
-    description: "연봉 실수령액, 대출이자, 예금·적금 이자, 주휴수당처럼 자주 찾는 금액을 바로 계산해 보세요. 2026년 요율과 법령 기준을 반영했습니다.",
+    description: "연봉 실수령액, 퇴직금, 연차, 대출이자, 주휴수당, 3.3% 원천징수처럼 자주 찾는 금액을 바로 계산해 보세요. 2026년 요율과 법령 기준을 반영했습니다.",
     pathName: "/calculators/",
     body: `<article class="post page"><header class="post-head"><div class="wrap narrow"><h1>생활 계산기</h1><p class="dek">자주 찾는 금액을 몇 번의 입력으로 계산해 보세요. 요율과 기준은 정부 고시와 법령을 확인해 반영하고, 바뀌면 바로 고칩니다.</p></div></header>
 <div class="wrap narrow"><div class="calc-list">${calcs.map(calcCard).join("")}</div>

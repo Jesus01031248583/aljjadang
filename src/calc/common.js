@@ -3,6 +3,18 @@
 export const won = (n) => Math.round(n).toLocaleString("ko-KR");
 export const floor10 = (n) => Math.floor(n / 10 + 1e-9) * 10;
 
+// 날짜: "2026-10-31" 문자열을 UTC 기준 Date로 다룬다 (시간대 영향 없이 날짜만 계산).
+export const parseDate = (s) => (/^\d{4}-\d{2}-\d{2}$/.test(s) ? new Date(`${s}T00:00:00Z`) : null);
+export const daysBetween = (a, b) => Math.round((b - a) / 864e5);
+// 월을 더한다. 1월 31일 + 1개월처럼 없는 날이면 그달 말일로 맞춘다.
+export function addMonths(d, n) {
+  const y = d.getUTCFullYear(), m = d.getUTCMonth() + n, day = d.getUTCDate();
+  const last = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+  return new Date(Date.UTC(y, m, Math.min(day, last)));
+}
+export const fmtDate = (d) => `${d.getUTCFullYear()}. ${d.getUTCMonth() + 1}. ${d.getUTCDate()}.`;
+export const todayKST = () => new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
+
 // 36,000,000 → "3,600만 원", 150,000,000 → "1억 5,000만 원"
 export function koMoney(n) {
   n = Math.floor(n);
@@ -73,6 +85,7 @@ export function setup(compute, { onChange } = {}) {
   const root = document.querySelector(".calc");
   const form = root.querySelector("form");
   const out = root.querySelector(".calc-result");
+  for (const el of form.querySelectorAll("[data-today]")) if (!el.value) el.value = todayKST();
   fromQuery(form);
   for (const el of form.querySelectorAll("[data-money]")) formatMoneyInput(el);
   // 숫자 칸을 누르면 기존 값을 통째로 선택해서 바로 새 값을 칠 수 있게 한다.

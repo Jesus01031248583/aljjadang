@@ -1,0 +1,22 @@
+<form class="calc-form" autocomplete="off">
+  <fieldset class="field seg seg-3">
+    <legend>무엇을 넣을까요?</legend>
+    <div class="seg-opts">
+      <label><input type="radio" name="from" value="hourly" checked><span>시급</span></label>
+      <label><input type="radio" name="from" value="monthly"><span>월급</span></label>
+      <label><input type="radio" name="from" value="annual"><span>연봉</span></label>
+    </div>
+  </fieldset>
+  <div class="field">
+    <label for="f-amount" data-label-hourly="시급" data-label-monthly="월급 (세전)" data-label-annual="연봉 (세전)">시급</label>
+    <div class="input"><input id="f-amount" name="amount" data-money inputmode="numeric" value="10320"><span>원</span></div>
+    <p class="hint" data-hint-for="amount"></p>
+  </div>
+  <div class="field">
+    <label for="f-week">1주 소정근로시간</label>
+    <div class="input"><input id="f-week" name="week" data-num inputmode="decimal" value="40"><span>시간</span></div>
+    <p class="hint">하루 8시간씩 주 5일이면 40시간이에요. 주 15시간 이상이면 주휴시간을 넣어 계산해요.</p>
+  </div>
+</form>
+<div class="calc-result" aria-live="polite"></div>
+<button type="button" class="calc-share" data-share>결과 링크 공유</button>

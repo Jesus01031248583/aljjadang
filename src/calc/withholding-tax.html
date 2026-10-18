@@ -1,0 +1,23 @@
+<form class="calc-form" autocomplete="off">
+  <fieldset class="field seg">
+    <legend>소득 종류</legend>
+    <div class="seg-opts">
+      <label><input type="radio" name="type" value="business" checked><span>3.3% (사업소득)</span></label>
+      <label><input type="radio" name="type" value="other"><span>8.8% (기타소득)</span></label>
+    </div>
+  </fieldset>
+  <fieldset class="field seg">
+    <legend>넣을 금액</legend>
+    <div class="seg-opts">
+      <label><input type="radio" name="dir" value="gross" checked><span>세전 지급액</span></label>
+      <label><input type="radio" name="dir" value="net"><span>실제 받은 돈</span></label>
+    </div>
+  </fieldset>
+  <div class="field">
+    <label for="f-amount" data-label-gross="세전 지급액" data-label-net="실제 입금액">세전 지급액</label>
+    <div class="input"><input id="f-amount" name="amount" data-money inputmode="numeric" value="1000000"><span>원</span></div>
+    <p class="hint" data-hint-for="amount"></p>
+  </div>
+</form>
+<div class="calc-result" aria-live="polite"></div>
+<button type="button" class="calc-share" data-share>결과 링크 공유</button>

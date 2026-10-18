@@ -1,0 +1,29 @@
+<form class="calc-form" autocomplete="off">
+  <div class="field-row">
+    <div class="field">
+      <label for="f-start">입사일</label>
+      <input class="date" id="f-start" name="start" type="date" value="2024-03-04">
+    </div>
+    <div class="field">
+      <label for="f-asof">기준일</label>
+      <input class="date" id="f-asof" name="asof" type="date" data-today>
+    </div>
+  </div>
+  <p class="hint">기준일은 보통 오늘이에요. 퇴사 예정이라면 마지막 근무일 다음 날을 넣어 보세요.</p>
+  <details class="calc-option">
+    <summary>미사용 연차수당도 계산하기</summary>
+    <div class="field-row">
+      <div class="field">
+        <label for="f-unused">못 쓴 연차</label>
+        <div class="input"><input id="f-unused" name="unused" data-num inputmode="decimal" value="0"><span>일</span></div>
+      </div>
+      <div class="field">
+        <label for="f-monthly">월 통상임금</label>
+        <div class="input"><input id="f-monthly" name="monthly" data-money inputmode="numeric" value="3000000"><span>원</span></div>
+      </div>
+    </div>
+    <p class="hint">통상임금은 기본급과 매달 고정으로 받는 수당이에요. 주 40시간 근무 기준으로 계산해요.</p>
+  </details>
+</form>
+<div class="calc-result" aria-live="polite"></div>
+<button type="button" class="calc-share" data-share>결과 링크 공유</button>
