@@ -1,0 +1,47 @@
+<form class="calc-form" autocomplete="off">
+  <fieldset class="field seg">
+    <legend>상품 종류</legend>
+    <div class="seg-opts">
+      <label><input type="radio" name="kind" value="saving" checked><span>적금 (매달 납입)</span></label>
+      <label><input type="radio" name="kind" value="deposit"><span>예금 (한 번에 예치)</span></label>
+    </div>
+  </fieldset>
+  <div class="field">
+    <label for="f-amount" data-label-saving="월 납입액" data-label-deposit="예치 금액">월 납입액</label>
+    <div class="input"><input id="f-amount" name="amount" data-money inputmode="numeric" value="500000"><span>원</span></div>
+    <p class="hint" data-hint-for="amount"></p>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="f-months">기간</label>
+      <div class="input"><input id="f-months" name="months" data-num inputmode="numeric" value="12"><span>개월</span></div>
+    </div>
+    <div class="field">
+      <label for="f-rate">연 이자율 (세전)</label>
+      <div class="input"><input id="f-rate" name="rate" data-num inputmode="decimal" value="3.5"><span>%</span></div>
+    </div>
+  </div>
+  <fieldset class="field seg">
+    <legend>이자 계산 방식</legend>
+    <div class="seg-opts">
+      <label><input type="radio" name="compound" value="0" checked><span>단리</span></label>
+      <label><input type="radio" name="compound" value="1"><span>월복리</span></label>
+    </div>
+  </fieldset>
+  <div class="field-row">
+    <div class="field">
+      <label for="f-tax">이자 과세</label>
+      <select id="f-tax" name="tax">
+        <option value="normal" selected>일반과세 (15.4%)</option>
+        <option value="free">비과세 (0%)</option>
+        <option value="custom">세율 직접 입력</option>
+      </select>
+    </div>
+    <div class="field" data-show-when="custom">
+      <label for="f-taxrate">적용 세율</label>
+      <div class="input"><input id="f-taxrate" name="taxrate" data-num inputmode="decimal" value="1.4"><span>%</span></div>
+    </div>
+  </div>
+</form>
+<div class="calc-result" aria-live="polite"></div>
+<button type="button" class="calc-share" data-share>결과 링크 공유</button>

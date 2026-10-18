@@ -1,0 +1,41 @@
+<form class="calc-form" autocomplete="off">
+  <div class="field">
+    <label for="f-annual">연봉 (세전)</label>
+    <div class="input"><input id="f-annual" name="annual" data-money inputmode="numeric" value="40000000"><span>원</span></div>
+    <p class="hint" data-hint-for="annual"></p>
+  </div>
+  <fieldset class="field seg">
+    <legend>퇴직금</legend>
+    <div class="seg-opts">
+      <label><input type="radio" name="severance" value="0" checked><span>연봉과 별도</span></label>
+      <label><input type="radio" name="severance" value="1"><span>연봉에 포함</span></label>
+    </div>
+  </fieldset>
+  <div class="field">
+    <label for="f-nontax">비과세 금액 (월)</label>
+    <div class="input"><input id="f-nontax" name="nontax" data-money inputmode="numeric" value="200000"><span>원</span></div>
+    <p class="hint">식대는 월 20만 원까지 비과세예요. 모르면 20만 원으로 두세요.</p>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="f-family">부양가족 수 (본인 포함)</label>
+      <select id="f-family" name="family">
+        <option value="1" selected>1명</option><option value="2">2명</option><option value="3">3명</option><option value="4">4명</option><option value="5">5명</option><option value="6">6명</option><option value="7">7명</option><option value="8">8명</option><option value="9">9명</option><option value="10">10명</option><option value="11">11명</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="f-kids">그중 8~20세 자녀</label>
+      <select id="f-kids" name="kids">
+        <option value="0" selected>없음</option><option value="1">1명</option><option value="2">2명</option><option value="3">3명</option><option value="4">4명</option><option value="5">5명</option>
+      </select>
+    </div>
+  </div>
+  <div class="field">
+    <label for="f-ratio">소득세 원천징수 비율</label>
+    <select id="f-ratio" name="ratio">
+      <option value="100" selected>100% (기본)</option><option value="80">80%</option><option value="120">120%</option>
+    </select>
+  </div>
+</form>
+<div class="calc-result" aria-live="polite"></div>
+<button type="button" class="calc-share" data-share>결과 링크 공유</button>

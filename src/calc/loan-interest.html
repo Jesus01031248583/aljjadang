@@ -1,0 +1,31 @@
+<form class="calc-form" autocomplete="off">
+  <div class="field">
+    <label for="f-amount">대출금</label>
+    <div class="input"><input id="f-amount" name="amount" data-money inputmode="numeric" value="100000000"><span>원</span></div>
+    <p class="hint" data-hint-for="amount"></p>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="f-rate">연 이자율</label>
+      <div class="input"><input id="f-rate" name="rate" data-num inputmode="decimal" value="4.5"><span>%</span></div>
+    </div>
+    <div class="field">
+      <label for="f-term">대출 기간</label>
+      <div class="input"><input id="f-term" name="term" data-num inputmode="numeric" value="30"><select name="unit" aria-label="기간 단위"><option value="y" selected>년</option><option value="m">개월</option></select></div>
+    </div>
+  </div>
+  <fieldset class="field seg seg-3">
+    <legend>상환 방식</legend>
+    <div class="seg-opts">
+      <label><input type="radio" name="method" value="annuity" checked><span>원리금균등</span></label>
+      <label><input type="radio" name="method" value="principal"><span>원금균등</span></label>
+      <label><input type="radio" name="method" value="bullet"><span>만기일시</span></label>
+    </div>
+  </fieldset>
+  <div class="field">
+    <label for="f-grace">거치 기간 (이자만 내는 기간)</label>
+    <div class="input"><input id="f-grace" name="grace" data-num inputmode="numeric" value="0"><span>개월</span></div>
+  </div>
+</form>
+<div class="calc-result" aria-live="polite"></div>
+<button type="button" class="calc-share" data-share>결과 링크 공유</button>

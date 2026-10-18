@@ -1,0 +1,22 @@
+<form class="calc-form" autocomplete="off">
+  <div class="field">
+    <label for="f-wage">시급</label>
+    <div class="input"><input id="f-wage" name="wage" data-money inputmode="numeric" value="10320"><span>원</span></div>
+    <p class="hint">2026년 최저임금은 시간당 10,320원이에요.</p>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="f-hours">하루 근무시간</label>
+      <div class="input"><input id="f-hours" name="hours" data-num inputmode="decimal" value="5"><span>시간</span></div>
+    </div>
+    <div class="field">
+      <label for="f-days">일주일 근무일</label>
+      <select id="f-days" name="days">
+        <option value="1">1일</option><option value="2">2일</option><option value="3">3일</option><option value="4">4일</option><option value="5" selected>5일</option><option value="6">6일</option><option value="7">7일</option>
+      </select>
+    </div>
+  </div>
+  <p class="hint">휴게시간은 빼고, 근로계약서에 정한 시간(소정근로시간)으로 넣으세요.</p>
+</form>
+<div class="calc-result" aria-live="polite"></div>
+<button type="button" class="calc-share" data-share>결과 링크 공유</button>

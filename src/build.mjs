@@ -48,6 +48,9 @@ const ICONS = {
   bed: '<path d="M3 19V7M3 14.5h18V19M21 14.5v-2a3 3 0 0 0-3-3h-8v5"/><circle cx="6.5" cy="11.5" r="1.5"/>',
   building: '<path d="M4 21V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v17"/><path d="M15 9h4a1 1 0 0 1 1 1v11"/><path d="M2.5 21h19"/><path d="M8 7h3M8 11h3M8 15h3"/>',
   calendar: '<rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M8 14h3"/>',
+  coins: '<ellipse cx="9" cy="6.5" rx="5.5" ry="2.5"/><path d="M3.5 6.5v4c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5v-4"/><path d="M3.5 10.5v2.5c0 1.4 2.5 2.5 5.5 2.5"/><ellipse cx="15" cy="15" rx="5.5" ry="2.5"/><path d="M9.5 15v3.5c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5V15"/>',
+  percent: '<path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
 };
 const CATEGORY_STYLE = {
   "절약": { color: "#0e9f6e", icon: "wallet" },
@@ -61,6 +64,7 @@ const catStyle = (c) => CATEGORY_STYLE[c] || { color: "#475569", icon: "doc" };
 const icon = (name, cls = "ico") =>
   `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name]}</svg>`;
 const catId = (c) => `cat-${categories.indexOf(c) + 1}`;
+const CALC_COLOR = "#0f766e";
 
 const LOGO_MARK = `<svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="currentColor"/><path d="M9.5 16.5l4.5 4.5 8.5-9" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
@@ -119,7 +123,7 @@ function card(p) {
 </a>`;
 }
 
-function layout({ title, description, pathName, body, type = "website", jsonLd, image = "/og-image.png" }) {
+function layout({ title, description, pathName, body, type = "website", jsonLd, image = "/og-image.png", scripts = [] }) {
   const fullTitle = title ? `${title} | ${config.title}` : `${config.title} - ${config.tagline}`;
   const canonical = siteUrl + pathName;
   const adsense = config.adsenseClient
@@ -155,6 +159,7 @@ ${verify}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="/style.css">
 ${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : ""}
+${scripts.map((s) => `<script type="module" src="${s}"></script>`).join("\n")}
 ${adsense}
 </head>
 <body>
@@ -163,6 +168,7 @@ ${adsense}
     <a class="logo" href="/" aria-label="${esc(config.title)} 홈">${LOGO_MARK}<span>${esc(config.title)}</span></a>
     <nav class="gnb" aria-label="카테고리">
       ${categories.map((c) => `<a href="/#${catId(c)}">${esc(c)}</a>`).join("")}
+      <a href="/calculators/">계산기</a>
       <a href="/about/">소개</a>
     </nav>
   </div>
@@ -201,6 +207,10 @@ function write(rel, content) {
 fs.mkdirSync(dist, { recursive: true });
 for (const f of fs.readdirSync(dist)) fs.rmSync(path.join(dist, f), { recursive: true, force: true });
 for (const f of ["style.css", "favicon.svg", "og-image.png"]) fs.copyFileSync(path.join(root, "src", f), path.join(dist, f));
+// 계산기 스크립트: src/calc/*.js 를 그대로 /calc/ 로 복사한다.
+const calcSrc = path.join(root, "src", "calc");
+fs.mkdirSync(path.join(dist, "calc"), { recursive: true });
+for (const f of fs.readdirSync(calcSrc).filter((f) => f.endsWith(".js"))) fs.copyFileSync(path.join(calcSrc, f), path.join(dist, "calc", f));
 
 const allPosts = readDir("content/posts");
 const posts = allPosts
@@ -211,11 +221,32 @@ for (const p of allPosts) {
   if (t && !isPublic(p)) console.log(`예약 대기: ${p.slug} (${p.publishAt} 공개)`);
 }
 const pages = readDir("content/pages");
+// 계산기: content/calculators/이름.md 는 설명 본문, src/calc/이름.html 은 입력 폼, src/calc/이름.js 는 계산 코드다.
+const calcs = readDir("content/calculators")
+  .filter((c) => c.draft !== "true")
+  .sort((a, b) => Number(a.order || 99) - Number(b.order || 99));
+for (const c of calcs) {
+  for (const ext of ["html", "js"]) {
+    if (!fs.existsSync(path.join(calcSrc, `${c.slug}.${ext}`))) throw new Error(`계산기 파일 없음: src/calc/${c.slug}.${ext}`);
+  }
+}
+const calcBySlug = Object.fromEntries(calcs.map((c) => [c.slug, c]));
 const categories = [...new Set(posts.map((p) => p.category))];
 // "18~20" 같은 범위 표기가 취소선으로 바뀌지 않도록 물결표를 이스케이프한다.
 const fill = (s) => s.replace(/~/g, "\\~").replaceAll("{{email}}", config.email).replaceAll("{{title}}", config.title).replaceAll("{{author}}", config.author);
 // '보험다모아'**에서 처럼 따옴표·괄호 뒤에 조사가 붙으면 marked가 굵게 처리하지 못해 **가 그대로 남는다.
-const md = (s) => figures(marked.parse(fill(s)).replace(/\*\*([^*<>\n]+?)\*\*/g, "<strong>$1</strong>"));
+const md = (s) => calcCards(figures(marked.parse(fill(s)).replace(/\*\*([^*<>\n]+?)\*\*/g, "<strong>$1</strong>")));
+
+// 글 본문에 {{calc:이름}} 한 줄을 넣으면 그 계산기로 가는 카드가 들어간다.
+function calcCard(c) {
+  return `<a class="calc-card" href="/calculators/${c.slug}/">${icon(c.icon || "calculator", "calc-card-ico")}<span><b>${esc(c.title)}</b><small>${esc(c.short || c.description)}</small></span><em>계산하기</em></a>`;
+}
+function calcCards(html) {
+  return html.replace(/<p>\{\{calc:([\w-]+)\}\}<\/p>/g, (_, slug) => {
+    if (!calcBySlug[slug]) throw new Error(`없는 계산기: {{calc:${slug}}}`);
+    return calcCard(calcBySlug[slug]);
+  });
+}
 
 // 본문 설명 그림: content/figures/이름.svg 를 2배 해상도 PNG로 굽고,
 // 마크다운에서 ![대체 텍스트](/figures/이름.png "그림 설명") 으로 넣는다.
@@ -324,6 +355,62 @@ for (const p of pages) {
   }));
 }
 
+// 계산기
+for (const c of calcs) {
+  const form = fs.readFileSync(path.join(calcSrc, `${c.slug}.html`), "utf8");
+  const related = (c.related || "").split(",").map((s) => s.trim()).filter(Boolean)
+    .map((s) => posts.find((p) => p.slug === s)).filter(Boolean);
+  const others = calcs.filter((o) => o !== c);
+  const { html, toc } = withToc(md(c.body));
+  const body = `
+<article class="post calc-page">
+  <header class="post-head">
+    <div class="wrap narrow">
+      <a class="chip-link" href="/calculators/"><span class="chip" style="--c:${CALC_COLOR}">계산기</span></a>
+      <h1>${esc(c.title)}</h1>
+      <p class="dek">${esc(c.description)}</p>
+      <p class="meta">${c.basis ? `${esc(c.basis)} · ` : ""}${c.updated ? `수정 ${formatDate(c.updated)}` : formatDate(c.date)}</p>
+    </div>
+  </header>
+  <div class="wrap narrow">
+    <div class="calc" data-calc="${c.slug}">${form}</div>
+    ${toc.length >= 3 ? `<nav class="toc" aria-label="목차"><p class="toc-title">계산 방법과 기준</p><ol>${toc.map((t) => `<li><a href="#${t.id}">${t.html}</a></li>`).join("")}</ol></nav>` : ""}
+    <div class="content">${html}</div>
+    ${others.length ? `<div class="calc-more"><p class="toc-title">다른 계산기</p>${others.map(calcCard).join("")}</div>` : ""}
+  </div>
+</article>
+${related.length ? `<section class="related"><div class="wrap"><h2 class="section-title">함께 보면 좋은 글</h2><div class="grid">${related.map(card).join("")}</div></div></section>` : ""}`;
+  write(`calculators/${c.slug}/index.html`, layout({
+    title: c.title,
+    description: c.description,
+    pathName: `/calculators/${c.slug}/`,
+    body,
+    scripts: [`/calc/${c.slug}.js`],
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: c.title,
+      description: c.description,
+      url: `${siteUrl}/calculators/${c.slug}/`,
+      applicationCategory: "FinanceApplication",
+      operatingSystem: "All",
+      inLanguage: "ko",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+      publisher: { "@type": "Organization", name: config.title },
+    },
+  }));
+}
+if (calcs.length) {
+  write("calculators/index.html", layout({
+    title: "생활 계산기",
+    description: "연봉 실수령액, 대출이자, 예금·적금 이자, 주휴수당처럼 자주 찾는 금액을 바로 계산해 보세요. 2026년 요율과 법령 기준을 반영했습니다.",
+    pathName: "/calculators/",
+    body: `<article class="post page"><header class="post-head"><div class="wrap narrow"><h1>생활 계산기</h1><p class="dek">자주 찾는 금액을 몇 번의 입력으로 계산해 보세요. 요율과 기준은 정부 고시와 법령을 확인해 반영하고, 바뀌면 바로 고칩니다.</p></div></header>
+<div class="wrap narrow"><div class="calc-list">${calcs.map(calcCard).join("")}</div>
+<p class="calc-note">계산 결과는 참고용입니다. 실제 금액은 회사 급여 규정, 금융회사 약관, 개인 상황에 따라 달라질 수 있습니다.</p></div></article>`,
+  }));
+}
+
 // 홈
 const [featured, ...rest] = posts;
 write("index.html", layout({
@@ -339,6 +426,13 @@ write("index.html", layout({
     </div>
   </div>
 </section>
+${calcs.length ? `
+<section class="home-calcs">
+  <div class="wrap">
+    <div class="home-calcs-head"><h2 class="section-title">바로 쓰는 계산기</h2><a href="/calculators/">전체 보기</a></div>
+    <div class="home-calcs-row">${calcs.map((c) => `<a href="/calculators/${c.slug}/">${icon(c.icon || "calculator")}<span>${esc(c.navTitle || c.title)}</span></a>`).join("")}</div>
+  </div>
+</section>` : ""}
 ${featured ? `
 <section class="hero">
   <div class="wrap hero-grid">
@@ -396,7 +490,7 @@ write("404.html", layout({
 }));
 
 // sitemap, robots, ads.txt
-const urls = ["/", ...pages.map((p) => `/${p.slug}/`), ...posts.map((p) => `/posts/${p.slug}/`)];
+const urls = ["/", ...pages.map((p) => `/${p.slug}/`), ...(calcs.length ? ["/calculators/"] : []), ...calcs.map((c) => `/calculators/${c.slug}/`), ...posts.map((p) => `/posts/${p.slug}/`)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url><loc>${siteUrl}${u}</loc></url>`).join("\n")}
@@ -407,4 +501,4 @@ if (config.adsenseClient) {
   write("ads.txt", `google.com, ${config.adsenseClient.replace(/^ca-/, "")}, DIRECT, f08c47fec0942fa0\n`);
 }
 
-console.log(`빌드 완료: 글 ${posts.length}개, 페이지 ${pages.length}개 → dist/`);
+console.log(`빌드 완료: 글 ${posts.length}개, 페이지 ${pages.length}개, 계산기 ${calcs.length}개 → dist/`);
