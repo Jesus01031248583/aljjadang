@@ -233,6 +233,21 @@ for (const c of calcs) {
     if (!fs.existsSync(path.join(calcSrc, `${c.slug}.${ext}`))) throw new Error(`계산기 파일 없음: src/calc/${c.slug}.${ext}`);
   }
 }
+// 계산기 글의 {{baseRate}} 같은 자리표시자를 rates.js 값으로 채운다. 기준금리가 자동 반영되면 글도 함께 바뀐다.
+{
+  const R = await import("./calc/rates.js");
+  const capRent = Math.round((2e8 * R.JEONSE_CONVERSION_CAP) / 100 / 12);
+  const [by, bm, bd] = R.BASE_RATE.since.split("-").map(Number);
+  const tokens = {
+    baseRate: `${R.BASE_RATE.rate.toFixed(2)}%`,
+    baseRateSince: `${by}년 ${bm}월 ${bd}일`,
+    jeonseCap: `${Number.isInteger(R.JEONSE_CONVERSION_CAP) ? R.JEONSE_CONVERSION_CAP.toFixed(1) : R.JEONSE_CONVERSION_CAP}%`,
+    capRent: `${capRent.toLocaleString("ko-KR")}원`,
+    capRentYear: `${(capRent * 12).toLocaleString("ko-KR")}원`,
+  };
+  const sub = (s) => s.replace(/\{\{(\w+)\}\}/g, (m, k) => (k in tokens ? tokens[k] : m));
+  for (const c of calcs) for (const k of Object.keys(c)) if (typeof c[k] === "string") c[k] = sub(c[k]);
+}
 const calcBySlug = Object.fromEntries(calcs.map((c) => [c.slug, c]));
 
 // 요율 점검 알림: 마지막 점검일 다음의 1월 1일·7월 1일이 지났거나, 유효기간이 끝난 값이 있으면 경고한다.

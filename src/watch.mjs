@@ -1,8 +1,11 @@
 // 계산기 기준값 자동 감시. GitHub Actions에서 매일 실행한다 (.github/workflows/rates-watch.yml).
 // 한국은행 기준금리, 관련 법령의 시행일, 유효기간, 정기 점검일을 확인하고
-// 달라진 점이 있으면 GitHub 이슈로 알린다. 값은 절대 자동으로 바꾸지 않는다.
-// 로컬에서 `node src/watch.mjs` 로 돌리면 결과만 출력한다.
+// 달라진 점이 있으면 GitHub 이슈로 알린다.
+// 기준금리는 자동으로 반영한다: rates.js를 고치고, 빌드로 검증하고, 커밋·배포한 뒤 이슈로 알린다.
+// 법령 개정은 내용을 읽고 판단해야 하므로 알림만 한다.
+// 로컬에서 `node src/watch.mjs` 로 돌리면 결과만 출력하고 아무것도 바꾸지 않는다.
 import fs from "node:fs";
+import { execSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { BASE_RATE, VALID_UNTIL, MIN_WAGE, RATES_CHECKED } from "./calc/rates.js";
@@ -38,19 +41,49 @@ async function checkBaseRate() {
     const latest = Number(rate);
     console.log(`기준금리: 사이트 ${latest}% (${y} ${md}) / rates.js ${BASE_RATE.rate}%`);
     if (latest !== BASE_RATE.rate) {
-      findings.push({
-        title: `기준금리 변경: ${BASE_RATE.rate.toFixed(2)}% → ${latest.toFixed(2)}% (${y}년 ${md})`,
-        body: [
-          `한국은행 기준금리가 바뀌었습니다: **${BASE_RATE.rate.toFixed(2)}% → ${latest.toFixed(2)}%** (${y}년 ${md})`,
-          "",
-          `- 영향: 전월세 전환 계산기의 법정 전환율 상한 (기준금리 + 2%) ${Math.min(10, BASE_RATE.rate + 2)}% → ${Math.min(10, latest + 2)}%`,
-          "- 고칠 곳: `src/calc/rates.js`의 BASE_RATE, `content/calculators/jeonse-monthly.md` 제목·본문",
-          `- 출처: ${url}`,
-        ].join("\n"),
-      });
+      const [mm, dd] = md.match(/\d+/g).map(Number);
+      const since = `${y}-${String(mm).padStart(2, "0")}-${String(dd).padStart(2, "0")}`;
+      const lines = [
+        `- 한국은행 기준금리: **${BASE_RATE.rate.toFixed(2)}% → ${latest.toFixed(2)}%** (${y}년 ${md} 결정)`,
+        `- 전월세 전환율 법정 상한 (기준금리 + 2%): **${Math.min(10, BASE_RATE.rate + 2)}% → ${Math.min(10, latest + 2)}%**`,
+        `- 출처: ${url}`,
+      ];
+      // 이상한 값(0 이하, 10% 초과, 한 번에 1%p 넘는 변동)은 자동 반영하지 않고 알림만 한다.
+      const sane = latest > 0 && latest <= 10 && Math.abs(latest - BASE_RATE.rate) <= 1;
+      const applied = sane && applyBaseRate(latest, since);
+      findings.push(applied
+        ? { title: `자동 반영: 기준금리 ${BASE_RATE.rate.toFixed(2)}% → ${latest.toFixed(2)}%`, body: [...lines, "", "전월세 전환 계산기와 설명 글에 새 기준금리를 반영해 배포했습니다."].join("\n") }
+        : { title: `기준금리 변경 (자동 반영 안 됨): ${BASE_RATE.rate.toFixed(2)}% → ${latest.toFixed(2)}%`, body: [...lines, "", sane ? "자동 반영 중 오류가 나서 반영하지 못했습니다. 직접 확인이 필요합니다." : "변동 폭이 비정상적이라 자동 반영하지 않았습니다. 직접 확인이 필요합니다."].join("\n") });
     }
   } catch (e) {
     findings.push({ failure: true, title: "자동 감시 실패: 한국은행 기준금리", body: `${e.message}\n\n직접 확인: ${url}` });
+  }
+}
+
+// 기준금리 자동 반영: rates.js 수정 → 빌드 검증 → 커밋·푸시. 배포는 report()에서 요청한다. GitHub Actions에서만 한다.
+let deployAfterPush = false;
+function applyBaseRate(rate, since) {
+  if (!process.env.GITHUB_ACTIONS) { console.log(`(로컬 실행) 기준금리 ${rate}% 자동 반영은 건너뜀`); return false; }
+  const file = path.join(root, "src", "calc", "rates.js");
+  const before = fs.readFileSync(file, "utf8");
+  const after = before.replace(/BASE_RATE = \{ rate: [\d.]+, since: "[\d-]+" \}/, `BASE_RATE = { rate: ${rate}, since: "${since}" }`);
+  if (after === before) return false;
+  try {
+    fs.writeFileSync(file, after);
+    execSync("npm ci && npm run build", { cwd: root, stdio: "inherit" });
+    execSync([
+      'git config user.name "github-actions[bot]"',
+      'git config user.email "41898282+github-actions[bot]@users.noreply.github.com"',
+      "git add src/calc/rates.js",
+      `git commit -m "기준금리 자동 반영: ${rate}% (${since})"`,
+      "git push",
+    ].join(" && "), { cwd: root, stdio: "inherit" });
+    deployAfterPush = true;
+    return true;
+  } catch (e) {
+    console.error(`자동 반영 실패: ${e.message}`);
+    fs.writeFileSync(file, before);
+    return false;
   }
 }
 
@@ -129,6 +162,11 @@ async function report() {
     const list = await res.json();
     if (!Array.isArray(list) || !list.length) break;
     existing.push(...list);
+  }
+  // 봇이 푸시한 커밋은 배포 워크플로를 깨우지 않으므로 직접 실행을 요청한다.
+  if (deployAfterPush) {
+    const res = await api("/actions/workflows/deploy.yml/dispatches", { method: "POST", body: JSON.stringify({ ref: "main" }) });
+    console.log(res.ok ? "배포 워크플로 실행 요청" : `배포 요청 실패(${res.status})`);
   }
   for (const f of findings) {
     const title = `[${LABEL}] ${f.title}`;
