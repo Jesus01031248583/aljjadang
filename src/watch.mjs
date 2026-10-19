@@ -75,7 +75,7 @@ function applyBaseRate(rate, since) {
       'git config user.name "github-actions[bot]"',
       'git config user.email "41898282+github-actions[bot]@users.noreply.github.com"',
       "git add src/calc/rates.js",
-      `git commit -m "기준금리 자동 반영: ${rate}% (${since})"`,
+      `git commit -m "기준금리 자동 반영: ${rate.toFixed(2)}% (${since})"`,
       "git push",
     ].join(" && "), { cwd: root, stdio: "inherit" });
     deployAfterPush = true;
