@@ -45,7 +45,7 @@ export const INCOME_TAX_BRACKETS = [
 ];
 
 // 한국은행 기준금리. 금통위 결정(연 8회)마다 확인한다. 전월세 전환율 상한에 쓰인다.
-export const BASE_RATE = { rate: 2.75, since: "2026-07-16" };
+export const BASE_RATE = { rate: 3, since: "2026-08-27" };
 // 주택임대차보호법 시행령 제9조: 전월세 전환율 상한 = min(연 10%, 기준금리 + 연 2%)
 export const JEONSE_CONVERSION_CAP = Math.min(10, BASE_RATE.rate + 2);
 
