@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="470" viewBox="0 0 640 470" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="468" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">퇴사 전후 돈 챙기는 순서</text>
+  <text x="32" y="82" font-size="17" font-weight="500" fill="#8b95a1">연말에 그만둔다면 이 순서로 챙기세요</text>
+
+  <line x1="70" y1="112" x2="70" y2="420" stroke="#c7d2fe" stroke-width="3"/>
+
+  <g>
+    <circle cx="70" cy="124" r="9" fill="#4338ca"/>
+    <text x="96" y="120" font-size="16" font-weight="700" fill="#4338ca">퇴사 한 달 전</text>
+    <text x="96" y="144" font-size="17" font-weight="700" fill="#191f28">퇴직일 정하기 · 남은 연차와 상여금 지급일 확인</text>
+
+    <circle cx="70" cy="190" r="9" fill="#4338ca"/>
+    <text x="96" y="186" font-size="16" font-weight="700" fill="#4338ca">마지막 근무일 전</text>
+    <text x="96" y="210" font-size="17" font-weight="700" fill="#191f28">IRP 계좌 만들어 회사에 알리기</text>
+
+    <circle cx="70" cy="256" r="9" fill="#4338ca"/>
+    <text x="96" y="252" font-size="16" font-weight="700" fill="#4338ca">퇴직일 (마지막 근무 다음 날)</text>
+    <text x="96" y="276" font-size="17" font-weight="700" fill="#191f28">이날부터 14일 안에 퇴직금·연차수당 정산</text>
+
+    <circle cx="70" cy="322" r="9" fill="#4338ca"/>
+    <text x="96" y="318" font-size="16" font-weight="700" fill="#4338ca">첫 지역보험료 납부기한 + 2개월 안</text>
+    <text x="96" y="342" font-size="17" font-weight="700" fill="#191f28">건강보험 임의계속가입 신청 (해당자)</text>
+
+    <circle cx="70" cy="388" r="9" fill="#059669"/>
+    <text x="96" y="384" font-size="16" font-weight="700" fill="#059669">퇴사 다음 해 5월</text>
+    <text x="96" y="408" font-size="17" font-weight="700" fill="#191f28">빠진 공제는 종합소득세 신고로 추가</text>
+  </g>
+
+  <text x="32" y="452" font-size="15" font-weight="500" fill="#8b95a1">퇴직일은 마지막으로 일한 날의 다음 날입니다</text>
+</svg>

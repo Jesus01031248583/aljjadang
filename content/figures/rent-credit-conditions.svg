@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="470" viewBox="0 0 640 470" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="468" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">월세 세액공제, 네 가지만 맞으면 됩니다</text>
+  <text x="32" y="82" font-size="17" font-weight="500" fill="#8b95a1">2026년에 낸 월세 기준 · 12월 31일 상태로 판단</text>
+
+  <g font-size="18">
+    <rect x="32" y="104" width="576" height="64" rx="14" fill="#f5f3ff"/>
+    <circle cx="66" cy="136" r="16" fill="#7c3aed"/><text x="66" y="142" font-size="17" font-weight="800" fill="#ffffff" text-anchor="middle">1</text>
+    <text x="96" y="132" font-weight="800" fill="#191f28">무주택 세대</text>
+    <text x="96" y="156" font-size="15" font-weight="500" fill="#4e5968">세대원 모두 집이 없어야 함 · 세대주가 원칙, 조건 맞으면 세대원도</text>
+
+    <rect x="32" y="180" width="576" height="64" rx="14" fill="#f5f3ff"/>
+    <circle cx="66" cy="212" r="16" fill="#7c3aed"/><text x="66" y="218" font-size="17" font-weight="800" fill="#ffffff" text-anchor="middle">2</text>
+    <text x="96" y="208" font-weight="800" fill="#191f28">총급여 8,000만 원 이하</text>
+    <text x="96" y="232" font-size="15" font-weight="500" fill="#4e5968">사업소득 등이 있으면 종합소득금액 7,000만 원 이하</text>
+
+    <rect x="32" y="256" width="576" height="64" rx="14" fill="#f5f3ff"/>
+    <circle cx="66" cy="288" r="16" fill="#7c3aed"/><text x="66" y="294" font-size="17" font-weight="800" fill="#ffffff" text-anchor="middle">3</text>
+    <text x="96" y="284" font-weight="800" fill="#191f28">전용 85㎡ 이하 또는 기준시가 4억 원 이하</text>
+    <text x="96" y="308" font-size="15" font-weight="500" fill="#4e5968">아파트·빌라·단독주택은 물론 오피스텔, 고시원도 포함</text>
+
+    <rect x="32" y="332" width="576" height="64" rx="14" fill="#f5f3ff"/>
+    <circle cx="66" cy="364" r="16" fill="#7c3aed"/><text x="66" y="370" font-size="17" font-weight="800" fill="#ffffff" text-anchor="middle">4</text>
+    <text x="96" y="360" font-weight="800" fill="#191f28">계약서 주소 = 주민등록 주소</text>
+    <text x="96" y="384" font-size="15" font-weight="500" fill="#4e5968">전입신고가 되어 있어야 함 · 계약자는 본인 또는 기본공제 대상 가족</text>
+  </g>
+
+  <text x="32" y="430" font-size="17" font-weight="700" fill="#191f28">공제액 = 1년 월세(최대 1,000만 원) × 17% 또는 15%</text>
+  <text x="32" y="454" font-size="15" font-weight="500" fill="#8b95a1">총급여 5,500만 원 이하 17%, 초과 15% · 낼 소득세가 있어야 공제됩니다</text>
+</svg>

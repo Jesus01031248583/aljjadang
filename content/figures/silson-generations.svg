@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="440" viewBox="0 0 640 440" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="438" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">가입한 날짜로 보는 내 실손 세대</text>
+  <text x="32" y="82" font-size="17" font-weight="500" fill="#8b95a1">보험증권의 최초 가입일(계약일)을 확인하세요</text>
+
+  <!-- 연대표: 2003~2027, 1년 = 23px, 2003 시작 x=40 -->
+  <rect x="40" y="110" width="154" height="56" rx="8" fill="#e0e7ff"/>
+  <rect x="196" y="110" width="173" height="56" rx="8" fill="#c7d2fe"/>
+  <rect x="371" y="110" width="98" height="56" rx="8" fill="#a5b4fc"/>
+  <rect x="471" y="110" width="110" height="56" rx="8" fill="#818cf8"/>
+  <rect x="583" y="110" width="25" height="56" rx="6" fill="#4338ca"/>
+  <g font-size="18" font-weight="800" text-anchor="middle">
+    <text x="117" y="144" fill="#3730a3">1세대</text>
+    <text x="282" y="144" fill="#3730a3">2세대</text>
+    <text x="420" y="144" fill="#3730a3">3세대</text>
+    <text x="526" y="144" fill="#ffffff">4세대</text>
+    <text x="596" y="144" fill="#ffffff" font-size="15">5</text>
+  </g>
+  <g font-size="14" font-weight="600" fill="#8b95a1" text-anchor="middle">
+    <text x="194" y="188">2009.10</text>
+    <text x="370" y="188">2017.4</text>
+    <text x="470" y="188">2021.7</text>
+    <text x="582" y="188">2026.5</text>
+  </g>
+
+  <!-- 비급여 자기부담 -->
+  <text x="32" y="232" font-size="18" font-weight="700" fill="#191f28">비급여 진료비 중 내가 내는 몫 (대표적인 경우)</text>
+  <g font-size="16">
+    <text x="40" y="268" font-weight="700" fill="#191f28">1세대</text><text x="140" y="268" font-weight="500" fill="#4e5968">0% (상품에 따라 다름) · 보장 가장 넓고 보험료 가장 비쌈</text>
+    <text x="40" y="298" font-weight="700" fill="#191f28">2세대</text><text x="140" y="298" font-weight="500" fill="#4e5968">10~20%</text>
+    <text x="40" y="328" font-weight="700" fill="#191f28">3세대</text><text x="140" y="328" font-weight="500" fill="#4e5968">20~30% · 도수치료 등 일부는 별도 특약</text>
+    <text x="40" y="358" font-weight="700" fill="#191f28">4세대</text><text x="140" y="358" font-weight="500" fill="#4e5968">30% · 비급여 많이 쓰면 다음 해 보험료 할증</text>
+    <text x="40" y="388" font-weight="700" fill="#191f28">5세대</text><text x="140" y="388" font-weight="500" fill="#4e5968">중증 30%, 비중증 50% · 보험료 가장 저렴</text>
+  </g>
+  <text x="32" y="422" font-size="15" font-weight="500" fill="#8b95a1">같은 세대라도 보험사·상품·가입 시기에 따라 차이가 있습니다</text>
+</svg>

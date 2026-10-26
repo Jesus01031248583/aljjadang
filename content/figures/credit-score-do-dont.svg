@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="440" viewBox="0 0 640 440" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="438" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">신용점수, 올리는 행동과 깎는 행동</text>
+
+  <rect x="32" y="76" width="280" height="300" rx="16" fill="#ecfdf5"/>
+  <text x="56" y="114" font-size="20" font-weight="800" fill="#065f46">↑ 점수에 도움</text>
+  <g font-size="16" font-weight="600" fill="#191f28">
+    <text x="56" y="156">통신비·공과금 납부 내역 제출</text>
+    <text x="56" y="196">카드값·대출 이자 자동이체</text>
+    <text x="56" y="236">신용카드 한도 여유 있게 쓰기</text>
+    <text x="56" y="276">고금리 대출부터 갚기</text>
+    <text x="56" y="316">오래 쓴 카드는 유지</text>
+    <text x="56" y="356">체크카드 꾸준히 사용</text>
+  </g>
+
+  <rect x="328" y="76" width="280" height="300" rx="16" fill="#fff1f2"/>
+  <text x="352" y="114" font-size="20" font-weight="800" fill="#be123c">↓ 점수 하락</text>
+  <g font-size="16" font-weight="600" fill="#191f28">
+    <text x="352" y="156">10만 원 이상 5영업일 연체</text>
+    <text x="352" y="196">현금서비스·카드론 이용</text>
+    <text x="352" y="236">리볼빙(일부 결제금액 이월)</text>
+    <text x="352" y="276">대부업·고금리 대출</text>
+    <text x="352" y="316">한도 꽉 채운 카드 사용</text>
+    <text x="352" y="356">짧은 기간 대출 여러 건</text>
+  </g>
+
+  <text x="32" y="408" font-size="15" font-weight="500" fill="#8b95a1">내 신용점수를 조회하거나 대출 금리를 알아보는 것만으로는 점수가 떨어지지 않습니다</text>
+</svg>
