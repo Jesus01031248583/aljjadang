@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="398" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">남은 300만 원, 무엇으로 결제할까</text>
+  <text x="32" y="82" font-size="17" font-weight="500" fill="#8b95a1">총급여 5,000만 원 · 10월까지 신용카드 1,300만 원 사용</text>
+
+  <!-- 막대: 공제액 1만 원 = 4px, 기준 x=200 -->
+  <text x="32" y="140" font-size="18" font-weight="700" fill="#191f28">신용카드로</text>
+  <rect x="200" y="116" width="210" height="40" rx="8" fill="#c7d2fe"/>
+  <text x="422" y="143" font-size="18" font-weight="800" fill="#3730a3">공제 52.5만 원</text>
+
+  <text x="32" y="210" font-size="18" font-weight="700" fill="#191f28">체크카드로</text>
+  <rect x="200" y="186" width="390" height="40" rx="8" fill="#4338ca"/>
+  <text x="572" y="213" font-size="18" font-weight="800" fill="#ffffff" text-anchor="end">공제 97.5만 원</text>
+
+  <line x1="32" y1="258" x2="608" y2="258" stroke="#e5e8eb" stroke-width="2"/>
+
+  <text x="32" y="294" font-size="17" font-weight="700" fill="#191f28">소득공제 차이</text>
+  <text x="608" y="294" font-size="17" font-weight="800" fill="#191f28" text-anchor="end">45만 원</text>
+  <text x="32" y="328" font-size="17" font-weight="700" fill="#191f28">실제로 줄어드는 세금 (세율 16.5% 가정)</text>
+  <text x="608" y="328" font-size="17" font-weight="800" fill="#4338ca" text-anchor="end">약 7만 4천 원</text>
+
+  <text x="32" y="372" font-size="15" font-weight="500" fill="#8b95a1">문턱 1,250만 원(총급여 25%)을 넘긴 금액부터 공제 · 지방소득세 포함</text>
+</svg>

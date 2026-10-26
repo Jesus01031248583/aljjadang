@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420" viewBox="0 0 640 420" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="418" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">중도상환수수료는 날마다 줄어듭니다</text>
+  <text x="32" y="82" font-size="17" font-weight="500" fill="#8b95a1">5,000만 원을 먼저 갚을 때 · 수수료율 0.6% · 3년 기준</text>
+
+  <!-- 축: x 0~3년 = 100~560, y 0~30만 = 310~130 -->
+  <g stroke="#eef0f3" stroke-width="2">
+    <line x1="100" y1="130" x2="560" y2="130"/>
+    <line x1="100" y1="190" x2="560" y2="190"/>
+    <line x1="100" y1="250" x2="560" y2="250"/>
+  </g>
+  <line x1="100" y1="310" x2="572" y2="310" stroke="#c9d1d9" stroke-width="2"/>
+  <g font-size="14" font-weight="500" fill="#8b95a1" text-anchor="end">
+    <text x="88" y="135">30만</text><text x="88" y="195">20만</text><text x="88" y="255">10만</text><text x="88" y="315">0</text>
+  </g>
+  <g font-size="15" font-weight="600" fill="#4e5968" text-anchor="middle">
+    <text x="100" y="338">대출 직후</text><text x="253" y="338">1년</text><text x="407" y="338">2년</text><text x="560" y="338">3년</text>
+  </g>
+
+  <path d="M100 130 L560 310 L100 310 Z" fill="#e0e7ff"/>
+  <line x1="100" y1="130" x2="560" y2="310" stroke="#4338ca" stroke-width="4" stroke-linecap="round"/>
+
+  <circle cx="100" cy="130" r="7" fill="#4338ca"/>
+  <circle cx="253" cy="190" r="7" fill="#4338ca"/>
+  <circle cx="407" cy="250" r="7" fill="#4338ca"/>
+  <circle cx="560" cy="310" r="7" fill="#059669"/>
+  <g font-size="17" font-weight="800">
+    <text x="114" y="122" fill="#3730a3">30만 원</text>
+    <text x="267" y="182" fill="#3730a3">20만 원</text>
+    <text x="421" y="242" fill="#3730a3">10만 원</text>
+    <text x="560" y="294" fill="#059669" text-anchor="middle">0원</text>
+  </g>
+
+  <text x="32" y="378" font-size="16" font-weight="700" fill="#191f28">수수료 = 갚는 원금 × 수수료율 × (3년 − 지난 기간) ÷ 3년</text>
+  <text x="32" y="402" font-size="15" font-weight="500" fill="#8b95a1">대출 기간이 3년보다 짧으면 남은 기간 ÷ 대출 기간으로 계산하는 곳이 많습니다</text>
+</svg>

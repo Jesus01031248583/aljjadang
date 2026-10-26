@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="470" viewBox="0 0 640 470" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="468" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">못 쓴 연차, 수당으로 받을 수 있을까</text>
+
+  <!-- 질문 1 -->
+  <rect x="32" y="78" width="380" height="52" rx="12" fill="#f2f4f6"/>
+  <text x="222" y="110" font-size="18" font-weight="700" fill="#191f28" text-anchor="middle">상시 근로자 5인 이상 회사인가요?</text>
+  <path d="M412 104h48" stroke="#c9d1d9" stroke-width="2"/>
+  <text x="436" y="96" font-size="14" font-weight="700" fill="#8b95a1" text-anchor="middle">아니요</text>
+  <rect x="460" y="78" width="148" height="52" rx="12" fill="#ffe4e6"/>
+  <text x="534" y="110" font-size="17" font-weight="800" fill="#be123c" text-anchor="middle">법정 연차 없음</text>
+
+  <path d="M232 130v24" stroke="#c9d1d9" stroke-width="2"/>
+  <text x="244" y="148" font-size="14" font-weight="700" fill="#8b95a1">예</text>
+
+  <!-- 질문 2 -->
+  <rect x="32" y="158" width="380" height="52" rx="12" fill="#f2f4f6"/>
+  <text x="222" y="190" font-size="18" font-weight="700" fill="#191f28" text-anchor="middle">퇴사해서 못 쓰게 된 연차인가요?</text>
+  <path d="M412 184h48" stroke="#c9d1d9" stroke-width="2"/>
+  <text x="436" y="176" font-size="14" font-weight="700" fill="#8b95a1" text-anchor="middle">예</text>
+  <rect x="460" y="158" width="148" height="52" rx="12" fill="#d1fae5"/>
+  <text x="534" y="190" font-size="17" font-weight="800" fill="#065f46" text-anchor="middle">수당 받음</text>
+
+  <path d="M232 210v24" stroke="#c9d1d9" stroke-width="2"/>
+  <text x="244" y="228" font-size="14" font-weight="700" fill="#8b95a1">아니요</text>
+
+  <!-- 질문 3 -->
+  <rect x="32" y="238" width="380" height="76" rx="12" fill="#f2f4f6"/>
+  <text x="222" y="268" font-size="18" font-weight="700" fill="#191f28" text-anchor="middle">회사가 서면으로 사용을 권하고</text>
+  <text x="222" y="294" font-size="18" font-weight="700" fill="#191f28" text-anchor="middle">사용 날짜까지 지정해 통보했나요?</text>
+  <path d="M412 276h48" stroke="#c9d1d9" stroke-width="2"/>
+  <text x="436" y="268" font-size="14" font-weight="700" fill="#8b95a1" text-anchor="middle">예</text>
+  <rect x="460" y="250" width="148" height="52" rx="12" fill="#fef3c7"/>
+  <text x="534" y="282" font-size="17" font-weight="800" fill="#92400e" text-anchor="middle">수당 없을 수 있음</text>
+
+  <path d="M232 314v24" stroke="#c9d1d9" stroke-width="2"/>
+  <text x="244" y="332" font-size="14" font-weight="700" fill="#8b95a1">아니요</text>
+
+  <rect x="32" y="342" width="576" height="52" rx="12" fill="#d1fae5"/>
+  <text x="320" y="374" font-size="18" font-weight="800" fill="#065f46" text-anchor="middle">기간이 끝난 뒤 연차수당을 받습니다</text>
+
+  <text x="32" y="428" font-size="15" font-weight="500" fill="#8b95a1">사용 촉진은 사용 기간 끝나기 6개월 전부터 정해진 절차를 모두 지켜야 인정됩니다</text>
+  <text x="32" y="450" font-size="15" font-weight="500" fill="#8b95a1">1주 소정근로시간이 15시간 미만이면 연차가 생기지 않습니다</text>
+</svg>
