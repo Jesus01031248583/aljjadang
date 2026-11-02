@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="440" viewBox="0 0 640 440" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="438" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">기부한 돈 vs 돌려받는 돈</text>
+  <text x="32" y="82" font-size="17" font-weight="500" fill="#8b95a1">2026년 기부분 · 세액공제(지방소득세 포함) + 답례품 30%</text>
+
+  <!-- 1만 원 = 1.4px, 막대 시작 x=120 -->
+  <g font-size="18" font-weight="800" fill="#191f28" text-anchor="end">
+    <text x="100" y="146">10만 원</text>
+    <text x="100" y="246">20만 원</text>
+    <text x="100" y="346">30만 원</text>
+  </g>
+
+  <!-- 10만 -->
+  <rect x="120" y="118" width="140" height="22" rx="5" fill="#e5e8eb"/>
+  <rect x="120" y="144" width="140" height="22" rx="5" fill="#4338ca"/>
+  <rect x="260" y="144" width="42" height="22" fill="#a5b4fc"/>
+  <text x="270" y="135" font-size="14" font-weight="600" fill="#8b95a1">기부 10만</text>
+  <text x="312" y="161" font-size="15" font-weight="800" fill="#3730a3">13만 원 돌려받음</text>
+
+  <!-- 20만 -->
+  <rect x="120" y="218" width="280" height="22" rx="5" fill="#e5e8eb"/>
+  <rect x="120" y="244" width="202" height="22" rx="5" fill="#4338ca"/>
+  <rect x="322" y="244" width="84" height="22" fill="#a5b4fc"/>
+  <text x="410" y="235" font-size="14" font-weight="600" fill="#8b95a1">기부 20만</text>
+  <text x="416" y="261" font-size="15" font-weight="800" fill="#3730a3">20만 4천 원</text>
+
+  <!-- 30만 -->
+  <rect x="120" y="318" width="420" height="22" rx="5" fill="#e5e8eb"/>
+  <rect x="120" y="344" width="225" height="22" rx="5" fill="#4338ca"/>
+  <rect x="345" y="344" width="126" height="22" fill="#a5b4fc"/>
+  <text x="548" y="335" font-size="14" font-weight="600" fill="#8b95a1">기부 30만</text>
+  <text x="480" y="361" font-size="15" font-weight="800" fill="#3730a3">25만 원</text>
+
+  <rect x="32" y="392" width="14" height="14" rx="3" fill="#4338ca"/>
+  <text x="54" y="404" font-size="15" font-weight="600" fill="#4e5968">세액공제</text>
+  <rect x="140" y="392" width="14" height="14" rx="3" fill="#a5b4fc"/>
+  <text x="162" y="404" font-size="15" font-weight="600" fill="#4e5968">답례품 (기부액의 30%)</text>
+  <rect x="352" y="392" width="14" height="14" rx="3" fill="#e5e8eb"/>
+  <text x="374" y="404" font-size="15" font-weight="600" fill="#4e5968">기부한 금액</text>
+  <text x="32" y="428" font-size="14" font-weight="500" fill="#8b95a1">낼 세금이 공제액보다 많은 직장인 기준 · 원 단위 반올림</text>
+</svg>

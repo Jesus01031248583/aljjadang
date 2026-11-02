@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="470" viewBox="0 0 640 470" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="468" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">부양가족 1명당 150만 원, 조건은 두 가지</text>
+  <text x="32" y="82" font-size="17" font-weight="500" fill="#8b95a1">2026년 연말정산(2027년 1월) 기준 · 나이는 출생연도로 판단</text>
+
+  <!-- 표 머리 -->
+  <rect x="32" y="102" width="576" height="44" rx="10" fill="#4338ca"/>
+  <g font-size="16" font-weight="800" fill="#ffffff">
+    <text x="52" y="130">관계</text>
+    <text x="220" y="130">나이 조건</text>
+    <text x="440" y="130">소득 조건</text>
+  </g>
+
+  <g font-size="16">
+    <text x="52" y="182" font-weight="800" fill="#191f28">배우자</text>
+    <text x="220" y="182" font-weight="600" fill="#4e5968">없음</text>
+
+    <line x1="32" y1="200" x2="608" y2="200" stroke="#eef0f3" stroke-width="2"/>
+    <text x="52" y="230" font-weight="800" fill="#191f28">부모·조부모</text>
+    <text x="220" y="230" font-weight="600" fill="#4e5968">60세 이상</text>
+    <text x="220" y="252" font-size="14" font-weight="500" fill="#8b95a1">1966년 이전 출생</text>
+
+    <line x1="32" y1="270" x2="608" y2="270" stroke="#eef0f3" stroke-width="2"/>
+    <text x="52" y="300" font-weight="800" fill="#191f28">자녀·손자녀</text>
+    <text x="220" y="300" font-weight="600" fill="#4e5968">20세 이하</text>
+    <text x="220" y="322" font-size="14" font-weight="500" fill="#8b95a1">2006년 이후 출생</text>
+
+    <line x1="32" y1="340" x2="608" y2="340" stroke="#eef0f3" stroke-width="2"/>
+    <text x="52" y="370" font-weight="800" fill="#191f28">형제자매</text>
+    <text x="220" y="370" font-weight="600" fill="#4e5968">20세 이하 또는 60세 이상</text>
+    <text x="220" y="392" font-size="14" font-weight="500" fill="#8b95a1">함께 살아야 함</text>
+  </g>
+
+  <!-- 소득 조건: 공통 -->
+  <rect x="424" y="160" width="184" height="240" rx="12" fill="#eef2ff"/>
+  <text x="516" y="250" font-size="17" font-weight="800" fill="#3730a3" text-anchor="middle">연 소득금액</text>
+  <text x="516" y="276" font-size="17" font-weight="800" fill="#3730a3" text-anchor="middle">100만 원 이하</text>
+  <text x="516" y="306" font-size="14" font-weight="600" fill="#4e5968" text-anchor="middle">근로소득만 있으면</text>
+  <text x="516" y="326" font-size="14" font-weight="600" fill="#4e5968" text-anchor="middle">총급여 500만 원 이하</text>
+
+  <text x="32" y="432" font-size="15" font-weight="500" fill="#8b95a1">장애인은 나이 조건 없이 소득 조건만 · 한 사람은 한 명만 공제받을 수 있습니다</text>
+  <text x="32" y="454" font-size="15" font-weight="500" fill="#8b95a1">배우자는 나이 조건 없이 소득 조건만 봅니다</text>
+</svg>

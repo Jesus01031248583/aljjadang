@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="450" viewBox="0 0 640 450" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="448" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">주담대 갈아타기, 앱으로 3단계</text>
+
+  <g>
+    <rect x="32" y="78" width="180" height="150" rx="16" fill="#eef2ff"/>
+    <text x="52" y="112" font-size="15" font-weight="800" fill="#4338ca">1단계 · 5~10분</text>
+    <text x="52" y="146" font-size="19" font-weight="800" fill="#191f28">금리 비교</text>
+    <text x="52" y="176" font-size="15" font-weight="500" fill="#4e5968">비교 앱에서 내 대출</text>
+    <text x="52" y="198" font-size="15" font-weight="500" fill="#4e5968">불러와 조건 비교</text>
+
+    <path d="M218 153h12" stroke="#a5b4fc" stroke-width="3"/>
+    <path d="M226 147l6 6-6 6" fill="none" stroke="#a5b4fc" stroke-width="3"/>
+
+    <rect x="238" y="78" width="180" height="150" rx="16" fill="#eef2ff"/>
+    <text x="258" y="112" font-size="15" font-weight="800" fill="#4338ca">2단계 · 2~7일</text>
+    <text x="258" y="146" font-size="19" font-weight="800" fill="#191f28">심사 신청</text>
+    <text x="258" y="176" font-size="15" font-weight="500" fill="#4e5968">고른 금융회사 앱에서</text>
+    <text x="258" y="198" font-size="15" font-weight="500" fill="#4e5968">한도·금리 심사</text>
+
+    <path d="M424 153h12" stroke="#a5b4fc" stroke-width="3"/>
+    <path d="M432 147l6 6-6 6" fill="none" stroke="#a5b4fc" stroke-width="3"/>
+
+    <rect x="444" y="78" width="164" height="150" rx="16" fill="#4338ca"/>
+    <text x="464" y="112" font-size="15" font-weight="800" fill="#c7d2fe">3단계</text>
+    <text x="464" y="146" font-size="19" font-weight="800" fill="#ffffff">약정·상환</text>
+    <text x="464" y="176" font-size="15" font-weight="500" fill="#e0e7ff">새 금융회사가</text>
+    <text x="464" y="198" font-size="15" font-weight="500" fill="#e0e7ff">기존 대출을 갚아 줌</text>
+  </g>
+
+  <text x="32" y="270" font-size="18" font-weight="700" fill="#191f28">이용 전 확인할 조건</text>
+  <g font-size="16" font-weight="500" fill="#4e5968">
+    <text x="32" y="304">✓  기존 대출을 받은 지 6개월이 지났을 것</text>
+    <text x="32" y="334">✓  연체 중이 아닐 것 · 디딤돌·보금자리론 같은 정책대출은 제외</text>
+    <text x="32" y="364">✓  시세 조회가 되는 아파트 (일부 빌라·주거용 오피스텔 포함)</text>
+    <text x="32" y="394">✓  기존 대출 잔액 안에서만, 만기도 기존 만기 안에서</text>
+  </g>
+  <text x="32" y="430" font-size="14" font-weight="500" fill="#8b95a1">새 대출은 지금 기준으로 DSR 등 한도 심사를 다시 받습니다</text>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420" viewBox="0 0 640 420" font-family="Pretendard">
+  <rect x="1" y="1" width="638" height="418" rx="20" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+  <text x="32" y="52" font-size="25" font-weight="800" fill="#191f28" letter-spacing="-0.5">같은 의료비 400만 원, 누가 내는 게 유리할까</text>
+  <text x="32" y="82" font-size="17" font-weight="500" fill="#8b95a1">총급여의 3%를 넘는 금액부터 15% 공제 (지방소득세 포함 16.5%)</text>
+
+  <!-- 400만 = 480px, 1만 = 1.2px, 시작 x=80 -->
+  <text x="32" y="130" font-size="18" font-weight="800" fill="#191f28">총급여 5,000만 원인 남편이 냈다면</text>
+  <rect x="80" y="146" width="180" height="40" rx="6" fill="#e5e8eb"/>
+  <rect x="260" y="146" width="300" height="40" rx="6" fill="#818cf8"/>
+  <text x="170" y="172" font-size="15" font-weight="700" fill="#4e5968" text-anchor="middle">문턱 150만</text>
+  <text x="410" y="172" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">공제 대상 250만</text>
+  <text x="80" y="214" font-size="17" font-weight="800" fill="#3730a3">줄어드는 세금 약 41만 원</text>
+
+  <text x="32" y="262" font-size="18" font-weight="800" fill="#191f28">총급여 3,000만 원인 아내가 냈다면</text>
+  <rect x="80" y="278" width="108" height="40" rx="6" fill="#e5e8eb"/>
+  <rect x="188" y="278" width="372" height="40" rx="6" fill="#4338ca"/>
+  <text x="134" y="304" font-size="15" font-weight="700" fill="#4e5968" text-anchor="middle">문턱 90만</text>
+  <text x="374" y="304" font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">공제 대상 310만</text>
+  <text x="80" y="346" font-size="17" font-weight="800" fill="#3730a3">줄어드는 세금 약 51만 원</text>
+
+  <text x="32" y="388" font-size="15" font-weight="500" fill="#8b95a1">의료비는 실제로 돈을 낸 사람이 공제받습니다 · 아내의 결정세액이 충분하다는 가정</text>
+</svg>
