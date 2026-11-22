@@ -62,6 +62,7 @@ const CATEGORY_STYLE = {
   "생활 준비": { color: "#7c3aed", icon: "home" },
   "음식·문화": { color: "#e11d48", icon: "glass" },
   "세금·금융": { color: "#4338ca", icon: "won" },
+  "생활 이슈": { color: "#ea580c", icon: "bolt" },
 };
 const catStyle = (c) => CATEGORY_STYLE[c] || { color: "#475569", icon: "doc" };
 const icon = (name, cls = "ico") =>
